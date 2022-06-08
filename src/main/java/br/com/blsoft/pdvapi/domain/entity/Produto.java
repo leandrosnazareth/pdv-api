@@ -1,7 +1,7 @@
 package br.com.blsoft.pdvapi.domain.entity;
 
 import java.io.Serializable;
-import java.math.BigInteger;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 import javax.persistence.Column;
@@ -48,7 +48,7 @@ public class Produto implements Serializable {
 
     @Column(nullable = false)
     @NotNull(message = "{campo.preco.obrigatorio}")
-    private BigInteger preco;
+    private BigDecimal preco;
 
     @CreatedDate
     @Column(nullable = false, updatable = false)
