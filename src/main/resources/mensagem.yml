@@ -1,0 +1,6 @@
+campo:
+  nome:
+    obrigatorio: O campo nome é obrigatorio!
+    tamanho: Nome deve ter entre 2 e 100 caracteres!
+  preco:
+    obrigatorio: O campo preço é obrigatorio!

@@ -1,0 +1,11 @@
+# =================================
+# = Spring conectar com db testcontainers do docker
+# =================================
+spring:
+    datasource:
+        driver-class-name: org.testcontainers.jdbc.ContainerDatabaseDriver
+        url: jdbc:tc:postgresql://localhost/dbpdv
+        username: postgres
+        password: admin
+    main:
+        allow-bean-definition-overriding: true

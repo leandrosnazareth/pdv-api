@@ -59,7 +59,7 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-		<!-- <dependency>
+		<dependency>
 			<groupId>org.testcontainers</groupId>
 			<artifactId>junit-jupiter</artifactId>
 			<scope>test</scope>
@@ -68,19 +68,21 @@
 			<groupId>org.testcontainers</groupId>
 			<artifactId>postgresql</artifactId>
 			<scope>test</scope>
-		</dependency> -->
+		</dependency>
 	</dependencies>
-	<!-- <dependencyManagement>
+
+	<!-- Test Containers   -->
+	<dependencyManagement>
 		<dependencies>
 			<dependency>
 				<groupId>org.testcontainers</groupId>
 				<artifactId>testcontainers-bom</artifactId>
-				<version>${testcontainers.version}</version>
+				<version>1.17.2</version>
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
 		</dependencies>
-	</dependencyManagement> -->
+	</dependencyManagement>
 
 	<build>
 		<plugins>

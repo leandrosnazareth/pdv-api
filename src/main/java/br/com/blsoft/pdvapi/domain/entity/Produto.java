@@ -11,6 +11,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
@@ -38,16 +40,25 @@ public class Produto implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(nullable = false, unique = true)
+    @Size(min = 2, max = 100, message = "{campo.nome.tamanho}")
+    @NotNull(message = "{campo.nome.obrigatorio}")
     private String nome;
+
+    @Column(nullable = false)
+    @NotNull(message = "{campo.preco.obrigatorio}")
     private BigInteger preco;
 
     @CreatedDate
     @Column(nullable = false, updatable = false)
-    @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss") // formatar data no json de retorno
+    // formatar data no json de retorno
+    @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
     private LocalDateTime dataCadastro;
 
     @LastModifiedBy
-    @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss") // formatar data no json de retorno
+    // formatar data no json de retorno
+    @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
     private LocalDateTime dataAtualizacao;
 
     @PrePersist
