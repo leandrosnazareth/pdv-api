@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Customizando o log-->
+<configuration>
+    <!--    destino das mennsagens de log-->
+    <appender name="Console" class="ch.qos.logback.core.ConsoleAppender">
+        <!--        layout da mensagem-->
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <!--            configuracao do padrao das mensagens-->
+            <Pattern>
+                %d{HH:mm:ss,MMM} %highlight(%-5level) [%blue(%t)] %yellow(%C{1.}): %msg%n%throwable
+            </Pattern>
+        </layout>
+    </appender>
+    <!--    pegar as mensagens do tipo info e jogar no console-->
+    <root level="info">
+        <appender-ref ref="Console" />
+    </root>
+</configuration>

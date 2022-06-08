@@ -1,0 +1,32 @@
+# =================================
+# = Server
+# =================================
+server:
+  port: 8080
+
+# =================================
+# = Spring
+# =================================
+spring:
+    datasource:
+        driver-class-name: org.postgresql.Driver
+        url: jdbc:postgresql://localhost:5432/dbpdv
+        username: postgres
+        password: admin
+        type: com.zaxxer.hikari.HikariDataSource
+    jpa: 
+        database-platform: org.hibernate.dialect.PostgreSQLDialect
+        generate-ddl: true
+        show-sql: true
+        properties:
+            hibernate: 
+                # gerar tabelas automaticamente
+                ddl-auto: update
+
+# =================================
+# = Logging - INFO - TRACE - DEBUG - ERROR
+# =================================
+logging:
+    level:
+        org-springframework: INFO
+        # org-flywaydb: INFO

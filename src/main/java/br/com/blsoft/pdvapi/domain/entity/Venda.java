@@ -32,34 +32,35 @@ import lombok.ToString;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @ToString
 @EqualsAndHashCode
-public class Produto implements Serializable {
+public class Venda implements Serializable{
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String nome;
-    private BigInteger preco;
+    private BigInteger valorTotal;
+    private BigInteger valorPago;
+    private BigInteger troco;
 
     @CreatedDate
-    @Column(nullable = false, updatable = false)
-    @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss") // formatar data no json de retorno
-    private LocalDateTime dataCadastro;
+	@Column(nullable = false, updatable = false)
+	@JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss") // formatar data no json de retorno
+	private LocalDateTime dataCadastro;
 
-    @LastModifiedBy
-    @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss") // formatar data no json de retorno
-    private LocalDateTime dataAtualizacao;
+	@LastModifiedBy
+	@JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss") // formatar data no json de retorno
+	private LocalDateTime dataAtualizacao;
 
-    @PrePersist
-    protected void prePersist() {
-        if (this.dataCadastro == null)
-            dataCadastro = LocalDateTime.now();
-        if (this.dataAtualizacao == null)
-            dataAtualizacao = LocalDateTime.now();
-    }
+	@PrePersist
+	protected void prePersist() {
+		if (this.dataCadastro == null)
+			dataCadastro = LocalDateTime.now();
+		if (this.dataAtualizacao == null)
+			dataAtualizacao = LocalDateTime.now();
+	}
 
-    @PreUpdate
-    protected void preUpdate() {
-        this.dataAtualizacao = LocalDateTime.now();
-    }
+	@PreUpdate
+	protected void preUpdate() {
+		this.dataAtualizacao = LocalDateTime.now();
+	}
 }

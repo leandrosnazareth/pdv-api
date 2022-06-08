@@ -9,5 +9,4 @@ public class PdvApiApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(PdvApiApplication.class, args);
 	}
-
 }
