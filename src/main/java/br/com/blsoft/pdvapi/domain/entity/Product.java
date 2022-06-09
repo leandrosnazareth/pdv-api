@@ -3,6 +3,7 @@ package br.com.blsoft.pdvapi.domain.entity;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -34,7 +35,7 @@ import lombok.ToString;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @ToString
 @EqualsAndHashCode
-public class Produto implements Serializable {
+public class Product implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -44,33 +45,38 @@ public class Produto implements Serializable {
     @Column(nullable = false, unique = true)
     @Size(min = 2, max = 100, message = "{campo.nome.tamanho}")
     @NotNull(message = "{campo.nome.obrigatorio}")
-    private String nome;
+    private String name;
 
     @Column(nullable = false)
     @NotNull(message = "{campo.preco.obrigatorio}")
-    private BigDecimal preco;
+    private BigDecimal price;
+
+    @Column(nullable = false)
+    private Boolean active;
 
     @CreatedDate
     @Column(nullable = false, updatable = false)
     // formatar data no json de retorno
     @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
-    private LocalDateTime dataCadastro;
+    private LocalDateTime createdAt;
 
     @LastModifiedBy
     // formatar data no json de retorno
     @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
-    private LocalDateTime dataAtualizacao;
+    private LocalDateTime updatedAt;
 
     @PrePersist
     protected void prePersist() {
-        if (this.dataCadastro == null)
-            dataCadastro = LocalDateTime.now();
-        if (this.dataAtualizacao == null)
-            dataAtualizacao = LocalDateTime.now();
+        if (Objects.isNull(active))
+            active = true;
+        if (this.createdAt == null)
+            createdAt = LocalDateTime.now();
+        if (this.updatedAt == null)
+            updatedAt = LocalDateTime.now();
     }
 
     @PreUpdate
     protected void preUpdate() {
-        this.dataAtualizacao = LocalDateTime.now();
+        this.updatedAt = LocalDateTime.now();
     }
 }

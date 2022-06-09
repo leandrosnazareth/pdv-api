@@ -18,8 +18,7 @@ import org.springframework.data.annotation.LastModifiedBy;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-import br.com.blsoft.pdvapi.domain.model.FormaPagamento;
-import br.com.blsoft.pdvapi.domain.model.Moeda;
+import br.com.blsoft.pdvapi.domain.model.Payment;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -35,7 +34,7 @@ import lombok.ToString;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @ToString
 @EqualsAndHashCode
-public class Venda implements Serializable {
+public class Sale implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	@Id
@@ -53,7 +52,7 @@ public class Venda implements Serializable {
 	private BigDecimal troco;
 	@Column(nullable = false)
 	@NotNull(message = "{campo.formapagamento.obrigatorio}")
-	private FormaPagamento formaPagamento;
+	private Payment formaPagamento;
 
 	@CreatedDate
 	@Column(nullable = false, updatable = false)

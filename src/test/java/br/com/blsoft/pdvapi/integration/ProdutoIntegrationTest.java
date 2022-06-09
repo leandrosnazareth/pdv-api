@@ -5,78 +5,154 @@ import static br.com.blsoft.pdvapi.util.ProdutoConstantTest.DEFAULT_PRODUTO_VALO
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 
-import br.com.blsoft.pdvapi.domain.entity.Produto;
-import br.com.blsoft.pdvapi.domain.repository.ProdutoRepository;
+import br.com.blsoft.pdvapi.domain.entity.Product;
+import br.com.blsoft.pdvapi.domain.repository.ProductRepository;
 
 @ActiveProfiles(profiles = "integration-test")
 @SpringBootTest(classes = br.com.blsoft.pdvapi.PdvApiApplication.class)
 public class ProdutoIntegrationTest {
 
     @Autowired
-    ProdutoRepository produtoRepository;
+    ProductRepository productRepository;
 
     @Test
     public void testFindallProdutos() {
-        assertNotNull(produtoRepository.findAll());
+        assertNotNull(productRepository.findAll());
     }
 
     @Test
     public void testCreteProduto() {
-        var produto = this.criarProdutoPadrao();
+        var product = this.criarProdutoPadrao();
 
-        var produtoSalvo = produtoRepository.save(produto);
-        assertEquals(produto.getNome(), produtoSalvo.getNome());
-        assertEquals(produto.getPreco(), produtoSalvo.getPreco());
+        var productSalvo = productRepository.save(product);
+        assertEquals(product.getName(), productSalvo.getName());
+        assertEquals(product.getPrice(), productSalvo.getPrice());
 
-        produtoRepository.delete(produtoSalvo);
-        assertFalse(produtoRepository.findById(produtoSalvo.getId()).isPresent());
+        productRepository.delete(productSalvo);
+        assertFalse(productRepository.findById(productSalvo.getId()).isPresent());
+    }
+
+    @Test
+    public void testDeactivateProduct() {
+        var product = this.criarProdutoPadrao();
+
+        var productSalvo = productRepository.save(product);
+        assertEquals(product.getName(), productSalvo.getName());
+        assertEquals(product.getPrice(), productSalvo.getPrice());
+
+        productRepository.deactivate(productSalvo.getId());
+
+        assertFalse(productRepository.findByIdAndActive(productSalvo.getId(), true).isPresent());
+        assertTrue(productRepository.findByIdAndActive(productSalvo.getId(), false).isPresent());
+
+        productRepository.delete(productSalvo);
+        assertFalse(productRepository.findById(productSalvo.getId()).isPresent());
     }
 
     @Test
     public void testFindProdutoByID() {
-        var produto = this.criarProdutoPadrao();
+        var product = this.criarProdutoPadrao();
 
-        var produtoSalvo = produtoRepository.save(produto);
-        assertEquals(produto.getNome(), produtoSalvo.getNome());
-        assertEquals(produto.getPreco(), produtoSalvo.getPreco());
+        var productSalvo = productRepository.save(product);
+        assertEquals(product.getName(), productSalvo.getName());
+        assertEquals(product.getPrice(), productSalvo.getPrice());
 
-        var produtofound = produtoRepository.findById(produtoSalvo.getId()).get();
+        var productfound = productRepository.findById(productSalvo.getId()).get();
 
-        assertEquals(produtoSalvo.getId(), produtofound.getId());
-        assertEquals(produtoSalvo.getNome(), produtofound.getNome());
-        assertEquals(produtoSalvo.getPreco(), produtofound.getPreco());
+        assertEquals(productSalvo.getId(), productfound.getId());
+        assertEquals(productSalvo.getName(), productfound.getName());
+        assertEquals(productSalvo.getPrice(), productfound.getPrice());
 
-        produtoRepository.delete(produtofound);
-        assertFalse(produtoRepository.findById(produtoSalvo.getId()).isPresent());
+        productRepository.delete(productfound);
+        assertFalse(productRepository.findById(productSalvo.getId()).isPresent());
+    }
+
+    @Test
+    public void testFindProdutoByIDActive() {
+        var product = this.criarProdutoPadrao();
+
+        var productSalvo = productRepository.save(product);
+        assertEquals(product.getName(), productSalvo.getName());
+        assertEquals(product.getPrice(), productSalvo.getPrice());
+
+        var productfound = productRepository.findByIdAndActive(productSalvo.getId(), true).get();
+
+        assertEquals(productSalvo.getId(), productfound.getId());
+        assertEquals(productSalvo.getName(), productfound.getName());
+        assertEquals(productSalvo.getPrice(), productfound.getPrice());
+
+        productRepository.delete(productfound);
+        assertFalse(productRepository.findById(productSalvo.getId()).isPresent());
+    }
+
+    @Test
+    public void testFindProdutoByNameActive() {
+        var product = this.criarProdutoPadrao();
+
+        var productSalvo = productRepository.save(product);
+        assertEquals(product.getName(), productSalvo.getName());
+        assertEquals(product.getPrice(), productSalvo.getPrice());
+
+        var productfound = productRepository.findByNameAndActive(productSalvo.getName(), true).get();
+
+        assertEquals(productSalvo.getId(), productfound.getId());
+        assertEquals(productSalvo.getName(), productfound.getName());
+        assertEquals(productSalvo.getPrice(), productfound.getPrice());
+
+        productRepository.delete(productfound);
+        assertFalse(productRepository.findById(productSalvo.getId()).isPresent());
+    }
+
+    @Test
+    public void testFindProdutoByIDNotActive() {
+        var product = this.criarProdutoNotActive();
+
+        var productSalvo = productRepository.save(product);
+        assertEquals(product.getName(), productSalvo.getName());
+        assertEquals(product.getPrice(), productSalvo.getPrice());
+        assertEquals(product.getActive(), productSalvo.getActive());
+
+        assertFalse(productRepository.findByIdAndActive(productSalvo.getId(), true).isPresent());
+
+        productRepository.delete(productSalvo);
+        assertFalse(productRepository.findById(productSalvo.getId()).isPresent());
     }
 
     @Test
     public void testFindProdutoByName() {
-        var produto = this.criarProdutoPadrao();
+        var product = this.criarProdutoPadrao();
 
-        var produtoSalvo = produtoRepository.save(produto);
-        assertEquals(produto.getNome(), produtoSalvo.getNome());
-        assertEquals(produto.getPreco(), produtoSalvo.getPreco());
+        var productSalvo = productRepository.save(product);
+        assertEquals(product.getName(), productSalvo.getName());
+        assertEquals(product.getPrice(), productSalvo.getPrice());
 
-        var produtofound = produtoRepository.findByNome(produto.getNome());
+        var productfound = productRepository.findByName(product.getName()).get();
 
-        assertEquals(produtoSalvo.getId(), produtofound.getId());
-        assertEquals(produtoSalvo.getNome(), produtofound.getNome());
-        assertEquals(produtoSalvo.getPreco(), produtofound.getPreco());
+        assertEquals(productSalvo.getId(), productfound.getId());
+        assertEquals(productSalvo.getName(), productfound.getName());
+        assertEquals(productSalvo.getPrice(), productfound.getPrice());
 
-        produtoRepository.delete(produtofound);
-        assertFalse(produtoRepository.findById(produtoSalvo.getId()).isPresent());
+        productRepository.delete(productfound);
+        assertFalse(productRepository.findById(productSalvo.getId()).isPresent());
     }
 
-    public Produto criarProdutoPadrao() {
-        return Produto.builder()
-                .nome(DEFAULT_PRODUTO_NOME)
-                .preco(DEFAULT_PRODUTO_VALOR).build();
+    public Product criarProdutoPadrao() {
+        return Product.builder()
+                .name(DEFAULT_PRODUTO_NOME)
+                .price(DEFAULT_PRODUTO_VALOR).build();
+    }
+
+    public Product criarProdutoNotActive() {
+        return Product.builder()
+                .name(DEFAULT_PRODUTO_NOME)
+                .price(DEFAULT_PRODUTO_VALOR)
+                .active(false).build();
     }
 }

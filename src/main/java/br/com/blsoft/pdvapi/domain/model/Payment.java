@@ -1,6 +1,6 @@
 package br.com.blsoft.pdvapi.domain.model;
 
-public enum FormaPagamento {
+public enum Payment {
 
     DINHEIRO("DINHEIRO"),
     CARTAO("CARTÃO"),
@@ -8,13 +8,13 @@ public enum FormaPagamento {
     CHEQUE("CHEQUE"),
     FIADO("FIADO");
 
-    private String descricao;
+    private String name;
 
     public String getDescricao() {
-        return descricao;
+        return name;
     }
 
-    private FormaPagamento(String descricao) {
-        this.descricao = descricao;
+    private Payment(String name) {
+        this.name = name;
     }
 }
