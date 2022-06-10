@@ -22,6 +22,10 @@ spring:
             hibernate: 
                 # update atualiza os schemas de banco de dados, none, validate, update, create, create-drop
                 ddl-auto: update
+    mvc:
+        pathmatch:
+            matching-strategy: ant_path_matcher
+
 
 # =================================
 # = Logging - INFO - TRACE - DEBUG - ERROR
