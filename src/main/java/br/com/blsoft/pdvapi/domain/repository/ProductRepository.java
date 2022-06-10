@@ -20,7 +20,7 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 
     Optional<Product> findByIdAndActive(Long id, Boolean active);
 
-    // verificar se o nome da room não existe no banco, para cadastrar nova
+    // busca produto por nome ativo ou inativo 
     Optional<Product> findByNameAndActive(String name, Boolean active);
 
     // desativar sem deletar

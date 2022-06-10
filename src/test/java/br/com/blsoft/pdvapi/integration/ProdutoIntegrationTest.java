@@ -1,7 +1,7 @@
 package br.com.blsoft.pdvapi.integration;
 
-import static br.com.blsoft.pdvapi.util.ProdutoConstantTest.DEFAULT_PRODUTO_NOME;
-import static br.com.blsoft.pdvapi.util.ProdutoConstantTest.DEFAULT_PRODUTO_VALOR;
+import static br.com.blsoft.pdvapi.util.ConstantTest.DEFAULT_PRODUTO_NOME;
+import static br.com.blsoft.pdvapi.util.ConstantTest.DEFAULT_PRODUTO_VALOR;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
