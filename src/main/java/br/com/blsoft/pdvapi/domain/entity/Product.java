@@ -43,7 +43,7 @@ public class Product implements Serializable {
     private Long id;
 
     @Column(nullable = false, unique = true)
-    @Size(min = 2, max = 100, message = "{campo.nome.tamanho}")
+    @Size(min = 2, max = 50, message = "{campo.nome.tamanho}")
     @NotNull(message = "{campo.nome.obrigatorio}")
     private String name;
 
