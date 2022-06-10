@@ -56,7 +56,7 @@ public class Sale implements Serializable {
 	@Column(nullable = false)
 	@NotNull(message = "{campo.formapagamento.obrigatorio}")
 	private Payment formaPagamento;
-	
+
 	@OneToMany(cascade = CascadeType.PERSIST, orphanRemoval = true)
 	private List<ProductSold> productSolds;
 
@@ -80,5 +80,11 @@ public class Sale implements Serializable {
 	@PreUpdate
 	protected void preUpdate() {
 		this.dataAtualizacao = LocalDateTime.now();
+	}
+
+	public void calcularValorTotal() {
+		for (ProductSold productSold : this.productSolds) {
+			this.valorTotal = this.valorTotal.add(productSold.getPreco());
+		}
 	}
 }

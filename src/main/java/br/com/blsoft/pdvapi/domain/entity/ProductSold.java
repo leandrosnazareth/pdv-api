@@ -39,5 +39,9 @@ public class ProductSold implements Serializable {
     private BigDecimal preco;
     @Column(nullable = false)
     @NotNull(message = "{campo.quantidade.obrigatorio}")
-    private int quantidae;
+    private int quantidade;
+
+    public void calcularPrecoTotal() {
+        this.preco = this.preco.multiply(new BigDecimal(this.quantidade));
+    }
 }

@@ -3,6 +3,8 @@ package br.com.blsoft.pdvapi.integration;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+import java.math.BigDecimal;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -34,11 +36,15 @@ public class SaleIntegrationTest {
         var product = ProductDataTest.newProductBuilderSemId().build();
         productRepository.save(product);
 
+        var valorPago = new BigDecimal("100.00");
+
         var products = productRepository.findAll();
 
-        var sale = new SaleDataTest().newSaleBuilderSemID(products).build();
+        var sale = new SaleDataTest().newSaleBuilderSemID(products);
 
         var saleSave = saleRepository.save(sale);
+
         assertEquals(sale.getFormaPagamento(), saleSave.getFormaPagamento());
+        assertEquals(valorPago, saleSave.getValorTotal());
     }
 }
