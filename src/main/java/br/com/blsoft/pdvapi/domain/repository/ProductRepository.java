@@ -1,27 +1,28 @@
 package br.com.blsoft.pdvapi.domain.repository;
 
+import java.util.List;
 import java.util.Optional;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
-import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import org.springframework.transaction.annotation.Transactional;
 
 import br.com.blsoft.pdvapi.domain.entity.Product;
-import io.swagger.annotations.Api;
 
-@Api(tags = "Product")
-@RepositoryRestResource(collectionResourceRel = "products", path = "product")
 public interface ProductRepository extends JpaRepository<Product, Long> {
 
-    Optional<Product> findByName(String name);
+    List<Product> findByActive(boolean active);
 
     Optional<Product> findByIdAndActive(Long id, Boolean active);
 
     // busca produto por nome ativo ou inativo 
     Optional<Product> findByNameAndActive(String name, Boolean active);
+    
+    Optional<Product> findByName(String name);
 
     // desativar sem deletar
     @Modifying(clearAutomatically = true)
@@ -29,7 +30,6 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     @Query("UPDATE Product r SET r.active = false WHERE r.id = :productId")
     void deactivate(@Param("productId") Long productId);
 
-    // @Modifying(clearAutomatically = true)
-    // @Query("update RssFeedEntry feedEntry set feedEntry.read =:isRead where feedEntry.id =:entryId")
-    // void markEntryAsRead(@Param("entryId") Long rssFeedEntryId, @Param("isRead") boolean isRead);
+    Page<Product> findAllByActive(Pageable pageable, boolean active);
+
 }
