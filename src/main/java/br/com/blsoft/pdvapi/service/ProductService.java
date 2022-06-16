@@ -26,29 +26,29 @@ public class ProductService {
     public Page<Product> findAll(Pageable pageable) {
         return productRepository.findAll(pageable);
     }
-
-    public List<Product> findAllActive() {
-        return productRepository.findByActive(true);
-    }
-
+    
     public Optional<Product> findById(long id) {
         return productRepository.findById(id);
+    }
+
+    public Optional<Product> findByName(String name) {
+        return productRepository.findByName(name);
+    }
+    
+    public void delete(Product product) {
+        productRepository.delete(product);
+    }
+    
+    public List<Product> findAllActive() {
+        return productRepository.findByActive(true);
     }
 
     public Optional<Product> findByIdAndActive(long id) {
         return productRepository.findByIdAndActive(id, true);
     }
 
-    public Optional<Product> findByName(String name) {
-        return productRepository.findByName(name);
-    }
-
     public Optional<Product> findByNameAndActive(String name) {
         return productRepository.findByNameAndActive(name, true);
-    }
-    
-    public void delete(Product product) {
-        productRepository.delete(product);
     }
 
     public void deactivate(@Valid Long id) {

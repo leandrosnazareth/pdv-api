@@ -32,8 +32,8 @@ public class SpringFoxConfig {
                 .apis(RequestHandlerSelectors.basePackage("br.com.blsoft.pdvapi"))
                 .paths(regex("/api/pdv.*"))
                 .build()
-                .tags(new Tag(PRODUCT_TAG, "Api PDV tag Product"))
-                .tags(new Tag(SALE_TAG, "Api PDV tag Sale"))
+                .tags(new Tag(PRODUCT_TAG, "Api REST PDV tag Product"))
+                .tags(new Tag(SALE_TAG, "Api REST PDV tag Sale"))
                 .apiInfo(metaInfo());
     }
 

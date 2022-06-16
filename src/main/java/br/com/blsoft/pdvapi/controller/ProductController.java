@@ -31,7 +31,6 @@ import io.swagger.annotations.ApiOperation;
 
 @RestController
 @RequestMapping("/api/pdv/product")
-// @Api(value = "API REST Produtos")
 @Api(tags = {SpringFoxConfig.PRODUCT_TAG})
 public class ProductController {
 
