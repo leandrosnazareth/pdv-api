@@ -1,7 +1,6 @@
 package br.com.blsoft.pdvapi.controller;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.validation.Valid;
@@ -47,6 +46,7 @@ public class SaleController {
     @PostMapping
     @ApiOperation(value = "Salva uma venda")
     public Sale createSale(@Valid @RequestBody Sale sale) {
+        System.out.println(sale.toString()+"SAVE AQUI");
         return saleService.save(sale);
     }
 
