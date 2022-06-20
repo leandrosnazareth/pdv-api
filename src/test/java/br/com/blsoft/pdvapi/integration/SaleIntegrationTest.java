@@ -22,8 +22,8 @@ import br.com.blsoft.pdvapi.domain.repository.SaleRepository;
 import br.com.blsoft.pdvapi.util.ProductDataTest;
 import br.com.blsoft.pdvapi.util.SaleDataTest;
 
-// @ActiveProfiles(profiles = "integration-test")
-@ActiveProfiles(profiles = "aplication")
+@ActiveProfiles(profiles = "integration-test")
+// @ActiveProfiles(profiles = "aplication")
 @SpringBootTest(classes = br.com.blsoft.pdvapi.PdvApiApplication.class)
 public class SaleIntegrationTest {
 
@@ -57,13 +57,13 @@ public class SaleIntegrationTest {
         var json = objectMapper.writeValueAsString(saleSave);
         System.out.println(json.toString()+"AQUI");
         
-        // assertEquals(sale.getPayment(), saleSave.getPayment());
-        // assertEquals(valorPago, saleSave.getTotal());
+        assertEquals(sale.getValorPago().getValor(), saleSave.getValorPago().getValor());
+        assertEquals(valorPago, saleSave.getValorTotal().getValor());
         
-        // saleRepository.delete(sale);
-        // assertFalse(saleRepository.findById(sale.getId()).isPresent());
+        saleRepository.delete(sale);
+        assertFalse(saleRepository.findById(sale.getId()).isPresent());
 
-        // productRepository.delete(product);
-        // assertFalse(productRepository.findById(product.getId()).isPresent());
+        productRepository.delete(product);
+        assertFalse(productRepository.findById(product.getId()).isPresent());
     }
 }

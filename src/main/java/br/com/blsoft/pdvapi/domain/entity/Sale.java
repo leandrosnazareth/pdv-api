@@ -1,10 +1,10 @@
 package br.com.blsoft.pdvapi.domain.entity;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import javax.persistence.AttributeOverride;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -21,6 +21,7 @@ import org.springframework.data.annotation.LastModifiedBy;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import br.com.blsoft.pdvapi.domain.model.Moeda;
 import br.com.blsoft.pdvapi.domain.model.Payment;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -32,8 +33,8 @@ import lombok.ToString;
 
 @Entity
 @Getter
-@NoArgsConstructor(access = AccessLevel.PRIVATE)
 @Builder
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @ToString
 @EqualsAndHashCode
@@ -46,13 +47,16 @@ public class Sale implements Serializable {
 
 	@Column(nullable = false)
 	@NotNull(message = "{campo.valortotal.obrigatorio}")
-	private BigDecimal valorTotal;
+	@AttributeOverride(name = "valor", column = @Column(name = "valor_total"))
+	private Moeda valorTotal;
 	@Column(nullable = false)
 	@NotNull(message = "{campo.valorpago.obrigatorio}")
-	private BigDecimal valorPago;
+	@AttributeOverride(name = "valor", column = @Column(name = "valor_pago"))
+	private Moeda valorPago;
 	@Column(nullable = false)
 	@NotNull(message = "{campo.troco.obrigatorio}")
-	private BigDecimal troco;
+	@AttributeOverride(name = "valor", column = @Column(name = "troco"))
+	private Moeda troco;
 	@Column(nullable = false)
 	@NotNull(message = "{campo.formapagamento.obrigatorio}")
 	private Payment formaPagamento;
@@ -84,7 +88,9 @@ public class Sale implements Serializable {
 
 	public void calcularValorTotal() {
 		for (ProductSold productSold : this.productSolds) {
-			this.valorTotal = this.valorTotal.add(productSold.getPreco());
+			this.valorTotal.somarCom(productSold.getPreco().getValor());
+			// this.valorTotal =
+			// this.valorTotal.somarCom(productSold.getPreco().getValor());
 		}
 	}
 }

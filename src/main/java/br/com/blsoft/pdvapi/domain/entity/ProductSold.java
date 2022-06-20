@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 
+import br.com.blsoft.pdvapi.domain.model.Moeda;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -21,8 +22,8 @@ import lombok.ToString;
 
 @Entity
 @Getter
-@NoArgsConstructor(access = AccessLevel.PRIVATE)
 @Builder
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @ToString
 @EqualsAndHashCode
@@ -36,12 +37,13 @@ public class ProductSold implements Serializable {
     private Product product;
     @Column(nullable = false)
     @NotNull(message = "{campo.preco.obrigatorio}")
-    private BigDecimal preco;
+    private Moeda preco;
     @Column(nullable = false)
     @NotNull(message = "{campo.quantidade.obrigatorio}")
     private int quantidade;
 
     public void calcularPrecoTotal() {
-        this.preco = this.preco.multiply(new BigDecimal(this.quantidade));
+        // this.preco = this.preco.multiplicarPor(new BigDecimal(this.quantidade));
+        this.preco.multiplicarPor(new BigDecimal(this.quantidade));
     }
 }
