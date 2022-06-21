@@ -47,19 +47,19 @@ public class Sale implements Serializable {
 
 	@Column(nullable = false)
 	@NotNull(message = "{campo.valortotal.obrigatorio}")
-	@AttributeOverride(name = "valor", column = @Column(name = "valor_total"))
-	private Moeda valorTotal;
+	@AttributeOverride(name = "valor", column = @Column(name = "amount"))
+	private Moeda amount;
 	@Column(nullable = false)
 	@NotNull(message = "{campo.valorpago.obrigatorio}")
-	@AttributeOverride(name = "valor", column = @Column(name = "valor_pago"))
-	private Moeda valorPago;
+	@AttributeOverride(name = "valor", column = @Column(name = "amount_paid"))
+	private Moeda amountPaid;
 	@Column(nullable = false)
 	@NotNull(message = "{campo.troco.obrigatorio}")
-	@AttributeOverride(name = "valor", column = @Column(name = "troco"))
-	private Moeda troco;
+	@AttributeOverride(name = "valor", column = @Column(name = "difference"))
+	private Moeda difference;
 	@Column(nullable = false)
 	@NotNull(message = "{campo.formapagamento.obrigatorio}")
-	private Payment formaPagamento;
+	private Payment payment;
 
 	@OneToMany(cascade = CascadeType.PERSIST, orphanRemoval = true)
 	private List<ProductSold> productSolds;
@@ -67,28 +67,28 @@ public class Sale implements Serializable {
 	@CreatedDate
 	@Column(nullable = false, updatable = false)
 	@JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss") // formatar data no json de retorno
-	private LocalDateTime dataCadastro;
+	private LocalDateTime createdAt;
 
 	@LastModifiedBy
 	@JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss") // formatar data no json de retorno
-	private LocalDateTime dataAtualizacao;
+	private LocalDateTime updatedAt;
 
 	@PrePersist
 	protected void prePersist() {
-		if (this.dataCadastro == null)
-			dataCadastro = LocalDateTime.now();
-		if (this.dataAtualizacao == null)
-			dataAtualizacao = LocalDateTime.now();
+		if (this.createdAt == null)
+		createdAt = LocalDateTime.now();
+		if (this.updatedAt == null)
+			updatedAt = LocalDateTime.now();
 	}
 
 	@PreUpdate
 	protected void preUpdate() {
-		this.dataAtualizacao = LocalDateTime.now();
+		this.updatedAt = LocalDateTime.now();
 	}
 
 	public void calcularValorTotal() {
 		for (ProductSold productSold : this.productSolds) {
-			this.valorTotal.somarCom(productSold.getPreco().getValor());
+			this.amountPaid.somarCom(productSold.getPrice().getValor());
 			// this.valorTotal =
 			// this.valorTotal.somarCom(productSold.getPreco().getValor());
 		}

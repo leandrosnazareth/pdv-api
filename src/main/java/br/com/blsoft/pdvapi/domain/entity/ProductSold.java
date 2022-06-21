@@ -37,13 +37,13 @@ public class ProductSold implements Serializable {
     private Product product;
     @Column(nullable = false)
     @NotNull(message = "{campo.preco.obrigatorio}")
-    private Moeda preco;
+    private Moeda price;
     @Column(nullable = false)
     @NotNull(message = "{campo.quantidade.obrigatorio}")
-    private int quantidade;
+    private int quantity;
 
     public void calcularPrecoTotal() {
-        // this.preco = this.preco.multiplicarPor(new BigDecimal(this.quantidade));
-        this.preco.multiplicarPor(new BigDecimal(this.quantidade));
+        // this.preco = this.preco.multiplicarPor(new BigDecimal(this.quantity));
+        this.price.multiplicarPor(new BigDecimal(this.quantity));
     }
 }

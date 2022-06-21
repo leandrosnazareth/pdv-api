@@ -16,6 +16,6 @@ public class ProductSoldTest {
         var produto = ProductDataTest.newProductBuilderComplete().build();
         var productSold = new ProductSoldDataTest().newProductSoldSemID(produto);
         var expected = new BigDecimal("100");
-        assertEquals(expected, productSold.getPreco().getValor());
+        assertEquals(expected, productSold.getPrice().getValor());
     }
 }

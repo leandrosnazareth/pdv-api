@@ -13,8 +13,8 @@ public class ProductSoldDataTest {
         ProductSold productSold;
         for (Product product : products) {
             productSold = ProductSold.builder()
-                    .preco(product.getPrice())
-                    .quantidade(5)
+                    .price(product.getPrice())
+                    .quantity(5)
                     .product(product).build();
             productSold.calcularPrecoTotal();
             productSolds.add(productSold);
@@ -24,8 +24,8 @@ public class ProductSoldDataTest {
 
     public ProductSold newProductSoldSemID(Product product) {
         var productSold = ProductSold.builder()
-                .preco(product.getPrice())
-                .quantidade(5)
+                .price(product.getPrice())
+                .quantity(5)
                 .product(product).build();
         productSold.calcularPrecoTotal();
         return productSold;

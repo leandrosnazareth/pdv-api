@@ -14,6 +14,10 @@
 	<description>Sistema de venda PDV web para testes</description>
 	<properties>
 		<java.version>11</java.version>
+		<junit-jupter.version>1.17.2</junit-jupter.version>
+		<springfox_swagger.version>3.0.0</springfox_swagger.version>
+		<springfox-boot.version>3.0.0</springfox-boot.version>
+		<test_containers_postgresql.version>1.17.2</test_containers_postgresql.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -34,13 +38,13 @@
 		<dependency>
 			<groupId>org.testcontainers</groupId>
 			<artifactId>junit-jupiter</artifactId>
-			<version>1.17.2</version>
+			<version>${junit-jupter.version}</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.testcontainers</groupId>
 			<artifactId>postgresql</artifactId>
-			<version>1.17.2</version>
+			<version>${test_containers_postgresql.version}</version>
 			<scope>test</scope>
 		</dependency>
 		<!-- FIM Test -->
@@ -49,12 +53,12 @@
 		<dependency>
 			<groupId>io.springfox</groupId>
 			<artifactId>springfox-swagger2</artifactId>
-			<version>3.0.0</version>
+			<version>${springfox_swagger.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>io.springfox</groupId>
 			<artifactId>springfox-boot-starter</artifactId>
-			<version>3.0.0</version>
+			<version>${springfox-boot.version}</version>
 		</dependency>
 
 		<dependency>
@@ -92,7 +96,7 @@
 			<dependency>
 				<groupId>org.testcontainers</groupId>
 				<artifactId>testcontainers-bom</artifactId>
-				<version>1.17.2</version>
+				<version>${test_containers_postgresql.version}</version>
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>

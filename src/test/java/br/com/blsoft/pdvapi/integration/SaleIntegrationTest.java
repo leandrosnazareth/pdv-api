@@ -57,8 +57,8 @@ public class SaleIntegrationTest {
         var json = objectMapper.writeValueAsString(saleSave);
         System.out.println(json.toString()+"AQUI");
         
-        assertEquals(sale.getValorPago().getValor(), saleSave.getValorPago().getValor());
-        assertEquals(valorPago, saleSave.getValorTotal().getValor());
+        assertEquals(sale.getAmountPaid().getValor(), saleSave.getAmountPaid().getValor());
+        assertEquals(valorPago, saleSave.getAmountPaid().getValor());
         
         saleRepository.delete(sale);
         assertFalse(saleRepository.findById(sale.getId()).isPresent());
