@@ -17,19 +17,21 @@
 		<junit-jupter.version>1.17.2</junit-jupter.version>
 		<springfox_swagger.version>3.0.0</springfox_swagger.version>
 		<springfox-boot.version>3.0.0</springfox-boot.version>
-		<test_containers_postgresql.version>1.17.2</test_containers_postgresql.version>
+		<testcontainers.version>1.17.2</testcontainers.version>
 	</properties>
 	<dependencies>
+		<!-- Persiste dados em armazenamentos SQL com Java Persistence API usando Spring Data e Hibernate.  -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
+		<!-- Crie aplicativos web, incluindo RESTful, usando Spring MVC. Usa o Apache Tomcat como o contêiner incorporado padrão. -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 
-		<!-- INÍCIO Test -->
+		<!-- TESTS -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
@@ -43,11 +45,9 @@
 		</dependency>
 		<dependency>
 			<groupId>org.testcontainers</groupId>
-			<artifactId>postgresql</artifactId>
-			<version>${test_containers_postgresql.version}</version>
+			<artifactId>mysql</artifactId>
 			<scope>test</scope>
 		</dependency>
-		<!-- FIM Test -->
 
 		<!-- Documentation: O Swagger eh usado junto com um conjunto de ferramentas de software de codigo aberto para projetar, construir, documentar e usar servicos da Web RESTful-->
 		<dependency>
@@ -60,35 +60,37 @@
 			<artifactId>springfox-boot-starter</artifactId>
 			<version>${springfox-boot.version}</version>
 		</dependency>
-
+		<!-- Fornece reinicializações rápidas de aplicativos, LiveReload e configurações para uma experiência de desenvolvimento aprimorada.  -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
 			<scope>runtime</scope>
 			<optional>true</optional>
 		</dependency>
+		<!-- driver de coneção com o banco de dados -->
 		<dependency>
-			<groupId>org.postgresql</groupId>
-			<artifactId>postgresql</artifactId>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
 			<scope>runtime</scope>
 		</dependency>
+		<!-- biblioteca Java focada em produtividade e redução de código -->
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 			<optional>true</optional>
 		</dependency>
+		<!-- framework open-source para testes software java -->
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<scope>test</scope>
 		</dependency>
-		<!-- DEPENDENCIAS EXTRAS -->
+		<!-- validador Hibernate -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-validation</artifactId>
 		</dependency>
 	</dependencies>
-
 
 	<!-- Test Containers   -->
 	<dependencyManagement>
@@ -96,7 +98,7 @@
 			<dependency>
 				<groupId>org.testcontainers</groupId>
 				<artifactId>testcontainers-bom</artifactId>
-				<version>${test_containers_postgresql.version}</version>
+				<version>${testcontainers.version}</version>
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
