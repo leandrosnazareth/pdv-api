@@ -1,10 +1,10 @@
 package br.com.blsoft.pdvapi.domain.entity;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import javax.persistence.AttributeOverride;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -21,7 +21,6 @@ import org.springframework.data.annotation.LastModifiedBy;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-import br.com.blsoft.pdvapi.domain.model.Moeda;
 import br.com.blsoft.pdvapi.domain.model.Payment;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -47,16 +46,13 @@ public class Sale implements Serializable {
 
 	@Column(nullable = false)
 	@NotNull(message = "{campo.valortotal.obrigatorio}")
-	@AttributeOverride(name = "valor", column = @Column(name = "amount"))
-	private Moeda amount;
+	private BigDecimal amount;
 	@Column(nullable = false)
 	@NotNull(message = "{campo.valorpago.obrigatorio}")
-	@AttributeOverride(name = "valor", column = @Column(name = "amount_paid"))
-	private Moeda amountPaid;
+	private BigDecimal amountPaid;
 	@Column(nullable = false)
 	@NotNull(message = "{campo.troco.obrigatorio}")
-	@AttributeOverride(name = "valor", column = @Column(name = "difference"))
-	private Moeda difference;
+	private BigDecimal difference;
 	@Column(nullable = false)
 	@NotNull(message = "{campo.formapagamento.obrigatorio}")
 	private Payment payment;
@@ -88,7 +84,8 @@ public class Sale implements Serializable {
 
 	public void calcularValorTotal() {
 		for (ProductSold productSold : this.productSolds) {
-			this.amountPaid.somarCom(productSold.getPrice().getValor());
+			// this.amountPaid.add(productSold.getPrice());
+			this.amountPaid = this.amountPaid.add(productSold.getPrice());
 			// this.valorTotal =
 			// this.valorTotal.somarCom(productSold.getPreco().getValor());
 		}

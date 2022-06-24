@@ -1,12 +1,10 @@
 package br.com.blsoft.pdvapi.util;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
 import br.com.blsoft.pdvapi.domain.entity.Product;
 import br.com.blsoft.pdvapi.domain.entity.ProductSold;
-import br.com.blsoft.pdvapi.domain.model.Moeda;
 
 public class ProductSoldDataTest {
 

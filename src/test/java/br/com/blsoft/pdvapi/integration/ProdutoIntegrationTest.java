@@ -33,7 +33,7 @@ public class ProdutoIntegrationTest {
 
         var productSalvo = productRepository.save(product);
         assertEquals(product.getName(), productSalvo.getName());
-        assertEquals(product.getPrice().getValor(), productSalvo.getPrice().getValor());
+        assertEquals(product.getPrice(), productSalvo.getPrice());
 
         productRepository.delete(productSalvo);
         assertFalse(productRepository.findById(productSalvo.getId()).isPresent());
@@ -45,7 +45,7 @@ public class ProdutoIntegrationTest {
 
         var productSalvo = productRepository.save(product);
         assertEquals(product.getName(), productSalvo.getName());
-        assertEquals(product.getPrice().getValor(), productSalvo.getPrice().getValor());
+        assertEquals(product.getPrice(), productSalvo.getPrice());
 
         productRepository.deactivate(productSalvo.getId());
 
@@ -62,13 +62,13 @@ public class ProdutoIntegrationTest {
 
         var productSalvo = productRepository.save(product);
         assertEquals(product.getName(), productSalvo.getName());
-        assertEquals(product.getPrice().getValor(), productSalvo.getPrice().getValor());
+        assertEquals(product.getPrice(), productSalvo.getPrice());
 
         var productfound = productRepository.findById(productSalvo.getId()).get();
 
         assertEquals(productSalvo.getId(), productfound.getId());
         assertEquals(productSalvo.getName(), productfound.getName());
-        assertEquals(productSalvo.getPrice().getValor(), productfound.getPrice().getValor());
+        assertEquals(productSalvo.getPrice(), productfound.getPrice());
 
         productRepository.delete(productfound);
         assertFalse(productRepository.findById(productSalvo.getId()).isPresent());
@@ -80,13 +80,13 @@ public class ProdutoIntegrationTest {
 
         var productSalvo = productRepository.save(product);
         assertEquals(product.getName(), productSalvo.getName());
-        assertEquals(product.getPrice().getValor(), productSalvo.getPrice().getValor());
+        assertEquals(product.getPrice(), productSalvo.getPrice());
 
         var productfound = productRepository.findByIdAndActive(productSalvo.getId(), true).get();
 
         assertEquals(productSalvo.getId(), productfound.getId());
         assertEquals(productSalvo.getName(), productfound.getName());
-        assertEquals(productSalvo.getPrice().getValor(), productfound.getPrice().getValor());
+        assertEquals(productSalvo.getPrice(), productfound.getPrice());
 
         productRepository.delete(productfound);
         assertFalse(productRepository.findById(productSalvo.getId()).isPresent());
@@ -98,13 +98,13 @@ public class ProdutoIntegrationTest {
 
         var productSalvo = productRepository.save(product);
         assertEquals(product.getName(), productSalvo.getName());
-        assertEquals(product.getPrice().getValor(), productSalvo.getPrice().getValor());
+        assertEquals(product.getPrice(), productSalvo.getPrice());
 
         var productfound = productRepository.findByNameAndActive(productSalvo.getName(), true).get();
 
         assertEquals(productSalvo.getId(), productfound.getId());
         assertEquals(productSalvo.getName(), productfound.getName());
-        assertEquals(productSalvo.getPrice().getValor(), productfound.getPrice().getValor());
+        assertEquals(productSalvo.getPrice(), productfound.getPrice());
 
         productRepository.delete(productfound);
         assertFalse(productRepository.findById(productSalvo.getId()).isPresent());
@@ -116,7 +116,7 @@ public class ProdutoIntegrationTest {
 
         var productSalvo = productRepository.save(product);
         assertEquals(product.getName(), productSalvo.getName());
-        assertEquals(product.getPrice().getValor(), productSalvo.getPrice().getValor());
+        assertEquals(product.getPrice(), productSalvo.getPrice());
         assertEquals(product.getActive(), productSalvo.getActive());
 
         assertFalse(productRepository.findByIdAndActive(productSalvo.getId(), true).isPresent());
@@ -131,13 +131,13 @@ public class ProdutoIntegrationTest {
 
         var productSalvo = productRepository.save(product);
         assertEquals(product.getName(), productSalvo.getName());
-        assertEquals(product.getPrice().getValor(), productSalvo.getPrice().getValor());
+        assertEquals(product.getPrice(), productSalvo.getPrice());
 
         var productfound = productRepository.findByName(product.getName()).get();
 
         assertEquals(productSalvo.getId(), productfound.getId());
         assertEquals(productSalvo.getName(), productfound.getName());
-        assertEquals(productSalvo.getPrice().getValor(), productfound.getPrice().getValor());
+        assertEquals(productSalvo.getPrice(), productfound.getPrice());
 
         productRepository.delete(productfound);
         assertFalse(productRepository.findById(productSalvo.getId()).isPresent());

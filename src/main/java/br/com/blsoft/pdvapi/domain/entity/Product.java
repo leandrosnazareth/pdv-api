@@ -1,6 +1,7 @@
 package br.com.blsoft.pdvapi.domain.entity;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
@@ -19,7 +20,6 @@ import org.springframework.data.annotation.LastModifiedBy;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-import br.com.blsoft.pdvapi.domain.model.Moeda;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -49,7 +49,7 @@ public class Product implements Serializable {
 
     @Column(nullable = false)
     @NotNull(message = "{campo.preco.obrigatorio}")
-    private Moeda price;
+    private BigDecimal price;
 
     @Column(nullable = false)
     private Boolean active;

@@ -3,7 +3,6 @@ package br.com.blsoft.pdvapi.domain.entity;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
-import javax.persistence.AttributeOverride;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,7 +11,6 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 
-import br.com.blsoft.pdvapi.domain.model.Moeda;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -38,18 +36,16 @@ public class ProductSold implements Serializable {
     private Product product;
     @Column(nullable = false)
     @NotNull(message = "{campo.preco.obrigatorio}")
-    @AttributeOverride(name = "valor", column = @Column(name = "price"))
-    private Moeda price;
+    private BigDecimal price;
     @Column(nullable = false)
     @NotNull(message = "{campo.preco.obrigatorio}")
-    @AttributeOverride(name = "valor", column = @Column(name = "price_total"))
-    private Moeda priceTotal;
+    private BigDecimal priceTotal;
     @Column(nullable = false)
     @NotNull(message = "{campo.quantidade.obrigatorio}")
     private int quantity;
 
     public void calcularPrecoTotal() {
-        // this.preco = this.preco.multiplicarPor(new BigDecimal(this.quantity));
-        this.price.multiplicarPor(new BigDecimal(this.quantity));
+        this.price = this.price.multiply(new BigDecimal(this.quantity));
+        // this.price.multiply(new BigDecimal(this.quantity));
     }
 }
