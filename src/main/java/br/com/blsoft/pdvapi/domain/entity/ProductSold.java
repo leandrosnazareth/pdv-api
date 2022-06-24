@@ -3,6 +3,7 @@ package br.com.blsoft.pdvapi.domain.entity;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
+import javax.persistence.AttributeOverride;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -37,7 +38,12 @@ public class ProductSold implements Serializable {
     private Product product;
     @Column(nullable = false)
     @NotNull(message = "{campo.preco.obrigatorio}")
+    @AttributeOverride(name = "valor", column = @Column(name = "price"))
     private Moeda price;
+    @Column(nullable = false)
+    @NotNull(message = "{campo.preco.obrigatorio}")
+    @AttributeOverride(name = "valor", column = @Column(name = "price_total"))
+    private Moeda priceTotal;
     @Column(nullable = false)
     @NotNull(message = "{campo.quantidade.obrigatorio}")
     private int quantity;
