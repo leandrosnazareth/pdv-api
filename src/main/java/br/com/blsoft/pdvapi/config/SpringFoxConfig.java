@@ -24,6 +24,7 @@ public class SpringFoxConfig {
 
     public static final String PRODUCT_TAG = "Product";
     public static final String SALE_TAG = "Sale";
+    public static final String PAYMENT_TAG = "Payment";
 
     @Bean
     public Docket api() {
@@ -34,6 +35,7 @@ public class SpringFoxConfig {
                 .build()
                 .tags(new Tag(PRODUCT_TAG, "Api REST PDV tag Product"))
                 .tags(new Tag(SALE_TAG, "Api REST PDV tag Sale"))
+                .tags(new Tag(PAYMENT_TAG, "Api REST Payment"))
                 .apiInfo(metaInfo());
     }
 
