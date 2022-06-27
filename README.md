@@ -22,7 +22,7 @@
  
 </p>
 
-> **PDV Web** é um sistema básico, **Open Source**, de vendas de frente de caixa. O PDV é a ferramenta para registar vendas de forma rápida e confiavel. Este projeto foi pensando em atender as necessidades de  pequenos empreendedores do ramo de mercearias e mini-mercados e afins.
+**PDV Web** é um sistema básico, **Open Source**, de vendas de frente de caixa. O PDV é a ferramenta para registar vendas de forma rápida e confiavel. Este projeto foi pensando em atender as necessidades de  pequenos empreendedores do ramo de mercearias e mini-mercados e afins.
 
 ## Objetivo do projeto
 Disponibilizar um projeto básico de código fonte open source de um sistema de vendas em PDF desenvolido utilizando as tecnologias listadas abaixo:
