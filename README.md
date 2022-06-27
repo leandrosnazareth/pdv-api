@@ -22,13 +22,13 @@
  
 </p>
 
-**PDV Web** é um sistema básico, **Open Source**, de vendas de frente de caixa. O PDV é a ferramenta para registar vendas de forma rápida e confiavel. Este projeto foi pensando em atender as necessidades de  pequenos empreendedores do ramo de mercearias e mini-mercados e afins.
+**PDV Web** é um sistema, **Open Source**, de vendas de frente de caixa. O PDV é a ferramenta para registar vendas de forma rápida e confiável. Este projeto foi pensando em atender as necessidades de  pequenos empreendedores do ramo de mercearias, minimercados e afins.
 
 ## Objetivo do projeto
-Disponibilizar um projeto básico de código fonte open source de um sistema de vendas em PDF desenvolido utilizando as tecnologias listadas abaixo:
+Disponibilizar um projeto de código fonte **Open Source** de um sistema de vendas em PDF desenvolvido  utilizando as tecnologias listadas abaixo:
 
 - Spring Boot;
-- Spring Data JPA; (com Hibernate)
+- Spring Data JPA (com Hibernate);
 - Spring Starter Test;
 - Spring Boot Starter Web;
 - Angular Material;
@@ -36,12 +36,12 @@ Disponibilizar um projeto básico de código fonte open source de um sistema de 
 - Lombok;
 - Maven;
 - JUnit;
-- Swagger; (Exposição da API REST do sistema de forma padronizada)
+- Swagger (Exposição da API REST do sistema de forma padronizada);
 - Mockito;
 - Testcontainers;
 - Docker;
-- TDD; (Test-Driven Development) testes unitários e de integração
-- CoreUI Bootstrap Admin Dashboard Template
+- TDD (Test-Driven Development) testes unitários e de integração;
+- CoreUI Bootstrap Admin Dashboard Template.
 
 ## O sistema
 
@@ -52,6 +52,8 @@ Disponibilizar um projeto básico de código fonte open source de um sistema de 
 ### CRUD de produtos
 
 ![](https://i.ibb.co/L1tkX9w/produto1.png)
+
+![](https://i.ibb.co/nk0kPwm/produto2.png)
 
 ### Dashboard
 
