@@ -72,7 +72,7 @@ public class Sale implements Serializable {
 	@PrePersist
 	protected void prePersist() {
 		if (this.createdAt == null)
-		createdAt = LocalDateTime.now();
+			createdAt = LocalDateTime.now();
 		if (this.updatedAt == null)
 			updatedAt = LocalDateTime.now();
 	}
@@ -84,10 +84,7 @@ public class Sale implements Serializable {
 
 	public void calcularValorTotal() {
 		for (ProductSold productSold : this.productSolds) {
-			// this.amountPaid.add(productSold.getPrice());
 			this.amountPaid = this.amountPaid.add(productSold.getPrice());
-			// this.valorTotal =
-			// this.valorTotal.somarCom(productSold.getPreco().getValor());
 		}
 	}
 }
