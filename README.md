@@ -1,7 +1,7 @@
 <h1  align="center">Bem vindo ao PDV Web!</h1>
 <p  align="center">
 
-<img  src="https://drive.google.com/file/d/15DNq1OYhjjNWtR9LtbQgJ9fGxzVSm3U0/view?usp=sharing" />
+<img  src="https://i.ibb.co/WnLTkT8/logopdv.png" />
 
 </p>
 <p display="inline-block">
@@ -51,7 +51,7 @@ Disponibilizar um projeto básico de código fonte open source de um sistema de 
 
 ### CRUD de produtos
 
-![](https://drive.google.com/file/d/10pxoQPs6zX6e3onYhaKiIf_7L4fRjbks/view?usp=sharing)
+![](https://i.ibb.co/L1tkX9w/produto1.png)
 
 ### Dashboard
 
