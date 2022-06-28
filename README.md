@@ -49,7 +49,7 @@ Disponibilizar um projeto de código fonte **Open Source** de um sistema de vend
 
 ![](https://drive.google.com/file/d/10pxoQPs6zX6e3onYhaKiIf_7L4fRjbks/view?usp=sharing)
 
-### CRUD de produtos
+### Produto
 
 ![](https://i.ibb.co/L1tkX9w/produto1.png)
 
@@ -107,8 +107,8 @@ localhost
 
 ## 🤝 Contribuições
 
-Contribuições, são bem vindas!<br />Sinta-se à vontade para perguntar API [issues page](https://github.com/leandrosnazareth/pdv-api/issues).
-Contribuições, são bem vindas!<br />Sinta-se à vontade para perguntar APP [issues page](https://github.com/leandrosnazareth/pdv-api/issues).
+Contribuições, são bem vindas!<br />
+Sinta-se à vontade para perguntar API [issues page](https://github.com/leandrosnazareth/pdv-api/issues).
 
 ## Mostre seu apoio
 

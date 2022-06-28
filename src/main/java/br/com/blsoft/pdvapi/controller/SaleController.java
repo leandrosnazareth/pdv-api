@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import br.com.blsoft.pdvapi.config.SpringFoxConfig;
 import br.com.blsoft.pdvapi.domain.entity.Sale;
@@ -24,11 +25,10 @@ import br.com.blsoft.pdvapi.exception.ResourceNotFoundException;
 import br.com.blsoft.pdvapi.service.SaleService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
 
 @RestController
 @RequestMapping("/api/pdv/sale")
-@Api(tags = {SpringFoxConfig.SALE_TAG})
+@Api(tags = { SpringFoxConfig.SALE_TAG })
 public class SaleController {
 
     @Autowired
@@ -46,7 +46,6 @@ public class SaleController {
     @PostMapping
     @ApiOperation(value = "Salva uma venda")
     public Sale createSale(@Valid @RequestBody Sale sale) {
-        System.out.println(sale.toString()+"SAVE AQUI");
         return saleService.save(sale);
     }
 
@@ -80,5 +79,5 @@ public class SaleController {
                         "Não foi encontrada uma venda com id: " + sale.getId()));
         return ResponseEntity.ok(saleService.save(sale));
     }
-    
+
 }

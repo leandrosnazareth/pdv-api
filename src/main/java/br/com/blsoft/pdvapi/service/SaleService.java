@@ -16,8 +16,8 @@ public class SaleService {
     @Autowired
     private SaleRepository saletRepository;
 
-    public Sale save(Sale salet) {
-        return saletRepository.save(salet);
+    public Sale save(Sale sale) {
+        return saletRepository.save(sale);
     }
 
     public Page<Sale> findAll(Pageable pageable) {
