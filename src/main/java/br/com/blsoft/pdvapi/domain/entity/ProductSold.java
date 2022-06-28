@@ -40,8 +40,6 @@ public class ProductSold implements Serializable {
     @Column(nullable = false)
     @NotNull(message = "{campo.preco.obrigatorio}")
     private BigDecimal priceTotal;
-
-    // @Size(min = 1, max = 999, message = "Minimo 1 e maximo 999")
     @Column(nullable = false)
     @NotNull(message = "{campo.quantidade.obrigatorio}")
     private int quantity;

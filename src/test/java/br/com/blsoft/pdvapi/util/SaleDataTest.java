@@ -11,11 +11,12 @@ public class SaleDataTest {
 
     public Sale newSaleBuilderSemID(List<Product> products) {
         var sale = Sale.builder()
-                .payment(Payment.DINHEIRO)
-                .productSolds(new ProductSoldDataTest().newProductsSoldsSemID(products))
                 .amount(new BigDecimal("0"))
                 .amountPaid(new BigDecimal("0"))
-                .difference(new BigDecimal("0")).build();
+                .payment(Payment.DINHEIRO)
+                .difference(new BigDecimal("0"))
+                .productSolds(new ProductSoldDataTest().newProductsSoldsSemID(products))
+                .build();
         sale.calcularValorTotal();
         return sale;
     }
