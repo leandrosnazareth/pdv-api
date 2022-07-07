@@ -1,6 +1,10 @@
 package br.com.blsoft.pdvapi.service;
 
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.Optional;
+
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -30,5 +34,13 @@ public class SaleService {
 
     public void delete(Sale salet) {
         saletRepository.delete(salet);
+    }
+
+    public BigDecimal findValorTotalMonthAndYear2(@Valid LocalDateTime createdAt) {
+        return saletRepository.findValorTotalMonthAndYear2(createdAt);
+    }
+
+    public BigDecimal findValorTotalSales() {
+        return saletRepository.findValorTotalSales();
     }
 }

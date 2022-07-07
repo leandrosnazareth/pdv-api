@@ -1,5 +1,7 @@
 package br.com.blsoft.pdvapi.controller;
 
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -14,10 +16,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import br.com.blsoft.pdvapi.config.SpringFoxConfig;
 import br.com.blsoft.pdvapi.domain.entity.Sale;
@@ -80,4 +82,15 @@ public class SaleController {
         return ResponseEntity.ok(saleService.save(sale));
     }
 
+    @GetMapping("total/{createdAt}")
+    @ApiOperation(value = "Listar valor total de vendas no mes")
+    public BigDecimal findValorTotalMonthAndYear2(@Valid @RequestBody LocalDateTime createdAt) {
+        return saleService.findValorTotalMonthAndYear2(createdAt);
+    }
+
+    @GetMapping("somatotal")
+    @ApiOperation(value = "Listar valor total de vendas")
+    public BigDecimal findValorTotalSales() {
+        return saleService.findValorTotalSales();
+    }
 }
