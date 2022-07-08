@@ -122,4 +122,17 @@ public class ProductController {
     public void deactivate(@Valid @RequestBody Long id) {
         productService.deactivate(id);
     }
+
+    
+    @ApiOperation(value = "Retornar quantidade de Produtos")
+    @GetMapping("count")
+    public long countProducts() {
+        return productService.countProducts();
+    }
+
+    @ApiOperation(value = "Retornar quantidade de Produtos Ativos")
+    @GetMapping("active")
+    public long countProductActive() {
+        return productService.countProductActive();
+    }
 }

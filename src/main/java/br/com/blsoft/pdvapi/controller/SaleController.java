@@ -93,4 +93,10 @@ public class SaleController {
     public BigDecimal findValorTotalSales() {
         return saleService.findValorTotalSales();
     }
+
+    @ApiOperation(value = "Retornar quantidade de vendas")
+    @GetMapping("count")
+    public long countSales() {
+        return saleService.countSales();
+    }
 }

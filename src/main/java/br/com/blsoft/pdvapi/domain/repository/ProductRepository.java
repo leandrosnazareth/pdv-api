@@ -19,9 +19,9 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 
     Optional<Product> findByIdAndActive(Long id, Boolean active);
 
-    // busca produto por nome ativo ou inativo 
+    // busca produto por nome ativo ou inativo
     Optional<Product> findByNameAndActive(String name, Boolean active);
-    
+
     Optional<Product> findByName(String name);
 
     // desativar sem deletar
@@ -32,4 +32,9 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 
     Page<Product> findAllByActive(Pageable pageable, boolean active);
 
+    long count();
+
+
+    @Query("SELECT COUNT(*) FROM Product WHERE active = true")
+    long countProductActive();
 }

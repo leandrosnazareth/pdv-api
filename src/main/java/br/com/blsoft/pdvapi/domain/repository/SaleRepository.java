@@ -19,4 +19,6 @@ public interface SaleRepository extends JpaRepository<Sale, Long> {
 
     @Query("SELECT MONTHNAME(createdAt), SUM(amount) FROM Sale GROUP BY YEAR(createdAt), MONTH(createdAt)")
     BigDecimal findValorTotalMonthAndYear2(@Param("createdAt") LocalDateTime createdAt);
+
+    long count();
 }

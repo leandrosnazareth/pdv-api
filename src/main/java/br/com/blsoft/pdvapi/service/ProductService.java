@@ -54,4 +54,12 @@ public class ProductService {
     public void deactivate(@Valid Long id) {
         productRepository.deactivate(id);
     }
+
+    public long countProducts() {
+        return productRepository.count();
+    }
+
+    public long countProductActive() {
+        return productRepository.countProductActive();
+    }
 }

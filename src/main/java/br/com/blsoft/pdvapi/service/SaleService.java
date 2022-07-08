@@ -43,4 +43,8 @@ public class SaleService {
     public BigDecimal findValorTotalSales() {
         return saletRepository.findValorTotalSales();
     }
+
+    public long countSales() {
+        return saletRepository.count();
+    }
 }
