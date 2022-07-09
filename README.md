@@ -74,17 +74,51 @@ Disponibilizar um projeto de código fonte **Open Source** de um sistema de vend
 
 * Node >= 16.13.1
 
-## Instalação
+## Instalação APP
 
 Faça download do NodeJs caso não tenha instalando em sua máquina
 
+```sh
+
 https://nodejs.org/en/download/
 
-npm install
+```
+
+1 - Git clone: https://github.com/leandrosnazareth/pdv-app
+
+2 - Abrir projeto na IDE Visual Studio Code
+
+3 - No terminal, na pasta do projeto executar os comando abaixo
+
+4 - npm install @angular/cli@ 12.1.3
+
+5 - ng serve --open
+
+### Uso
+
+O projeto está localizado em
+  
+
+```sh
+
+localhost:4200
+
+```
 
 
-Execute o composer
+## Instalação API
 
+1 - Git clone: https://github.com/leandrosnazareth/pdv-api
+
+Faça download do banco de dados MySQL caso não tenha instalado em sua máquina
+
+https://dev.mysql.com/downloads/installer/
+
+Faça download do JDK 11 caso não tenha instalado em sua máquina
+
+https://www.oracle.com/br/java/technologies/javase/jdk11-archive-downloads.html
+
+Execute o projeto...
 
 ## Uso
 
@@ -93,7 +127,7 @@ O projeto está localizado em
 
 ```sh
 
-localhost
+localhost:8080
 
 ```
 
