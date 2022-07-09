@@ -45,19 +45,18 @@ Disponibilizar um projeto de código fonte **Open Source** de um sistema de vend
 
 ## O sistema
 
+### Dashboard
+![](https://i.ibb.co/SVVBrJ2/dashboard.png)
+
 ### PDV
 
-![](https://drive.google.com/file/d/10pxoQPs6zX6e3onYhaKiIf_7L4fRjbks/view?usp=sharing)
+![](https://i.ibb.co/QrW4mMw/pdv.png)
 
 ### Produto
 
-![](https://i.ibb.co/L1tkX9w/produto1.png)
+![](https://i.ibb.co/HXVssNT/cad-Produto.png)
 
-![](https://i.ibb.co/nk0kPwm/produto2.png)
-
-### Dashboard
-
-![](https://drive.google.com/file/d/10pxoQPs6zX6e3onYhaKiIf_7L4fRjbks/view?usp=sharing)
+![](https://i.ibb.co/LnPxG4r/list-Produto.png)
 
 ## Swagger Documentation
 
@@ -71,7 +70,7 @@ Disponibilizar um projeto de código fonte **Open Source** de um sistema de vend
 
 * mysql >= 8.0.29
 
-* Angular = 13.1.4
+* Angular = 12.1.3
 
 * Node >= 16.13.1
 
