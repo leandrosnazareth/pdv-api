@@ -2,6 +2,7 @@ package br.com.blsoft.pdvapi.service;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 
 import javax.validation.Valid;
@@ -46,5 +47,9 @@ public class SaleService {
 
     public long countSales() {
         return saletRepository.count();
+    }
+
+    public List<Sale> findTopByOrderByIdDesc() {
+        return saletRepository.findTop5ByOrderByIdDesc();
     }
 }

@@ -3,6 +3,7 @@ package br.com.blsoft.pdvapi.controller;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.validation.Valid;
@@ -98,5 +99,11 @@ public class SaleController {
     @GetMapping("count")
     public long countSales() {
         return saleService.countSales();
+    }
+
+    @ApiOperation(value = "Retornar ultimas 10 vendas")
+    @GetMapping("limit")
+    public List<Sale> findTopByOrderByIdDesc() {
+        return saleService.findTopByOrderByIdDesc();
     }
 }
