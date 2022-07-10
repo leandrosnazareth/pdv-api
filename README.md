@@ -110,11 +110,17 @@ localhost:4200
 
 1 - Git clone: https://github.com/leandrosnazareth/pdv-api
 
-Faça download do banco de dados MySQL caso não tenha instalado em sua máquina
+2 - Faça o download e instalação padrão do Docker
 
-https://dev.mysql.com/downloads/installer/
+https://docs.docker.com/desktop/windows/install/
 
-Faça download do JDK 11 caso não tenha instalado em sua máquina
+3- execute o comando abaixo para instalar o mysql no docker
+
+docker run --name mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=root -d mysql:latest
+
+4- Execute o mysql no docker
+
+4- Faça download do JDK 11 caso não tenha instalado em sua máquina
 
 https://www.oracle.com/br/java/technologies/javase/jdk11-archive-downloads.html
 
