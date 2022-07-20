@@ -1,7 +1,7 @@
 <h1  align="center">Bem vindo ao PDV Web!</h1>
 <p  align="center">
 
-<img  src="https://i.ibb.co/WnLTkT8/logopdv.png" />
+<img  src="https://i.ibb.co/S69XqSw/logopdv.png" />
 
 </p>
 <p display="inline-block">
