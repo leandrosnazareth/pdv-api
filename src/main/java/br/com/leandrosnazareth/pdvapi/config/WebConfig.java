@@ -1,4 +1,4 @@
-package br.com.blsoft.pdvapi.config;
+package br.com.leandrosnazareth.pdvapi.config;
 
 import java.util.Arrays;
 import java.util.List;

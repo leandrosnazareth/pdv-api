@@ -1,4 +1,4 @@
-package br.com.blsoft.pdvapi.domain.entity;
+package br.com.leandrosnazareth.pdvapi.domain.entity;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -21,7 +21,7 @@ import org.springframework.data.annotation.LastModifiedBy;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-import br.com.blsoft.pdvapi.domain.model.Payment;
+import br.com.leandrosnazareth.pdvapi.domain.model.Payment;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

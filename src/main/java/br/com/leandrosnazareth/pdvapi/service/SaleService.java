@@ -1,4 +1,4 @@
-package br.com.blsoft.pdvapi.service;
+package br.com.leandrosnazareth.pdvapi.service;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -12,8 +12,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import br.com.blsoft.pdvapi.domain.entity.Sale;
-import br.com.blsoft.pdvapi.domain.repository.SaleRepository;
+import br.com.leandrosnazareth.pdvapi.domain.entity.Sale;
+import br.com.leandrosnazareth.pdvapi.domain.repository.SaleRepository;
 
 @Service
 public class SaleService {

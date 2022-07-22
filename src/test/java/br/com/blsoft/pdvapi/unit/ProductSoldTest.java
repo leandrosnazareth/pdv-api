@@ -6,8 +6,8 @@ import java.math.BigDecimal;
 
 import org.junit.jupiter.api.Test;
 
-import br.com.blsoft.pdvapi.domain.entity.Product;
-import br.com.blsoft.pdvapi.domain.entity.ProductSold;
+import br.com.leandrosnazareth.pdvapi.domain.entity.Product;
+import br.com.leandrosnazareth.pdvapi.domain.entity.ProductSold;
 
 public class ProductSoldTest {
 

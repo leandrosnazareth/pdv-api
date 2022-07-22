@@ -1,4 +1,4 @@
-package br.com.blsoft.pdvapi.domain.model;
+package br.com.leandrosnazareth.pdvapi.domain.model;
 
 public enum Payment {
 

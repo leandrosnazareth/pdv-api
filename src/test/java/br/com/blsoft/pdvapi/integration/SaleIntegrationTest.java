@@ -16,15 +16,15 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
-import br.com.blsoft.pdvapi.domain.entity.Sale;
-import br.com.blsoft.pdvapi.domain.repository.ProductRepository;
-import br.com.blsoft.pdvapi.domain.repository.SaleRepository;
 import br.com.blsoft.pdvapi.util.ProductDataTest;
 import br.com.blsoft.pdvapi.util.SaleDataTest;
+import br.com.leandrosnazareth.pdvapi.domain.entity.Sale;
+import br.com.leandrosnazareth.pdvapi.domain.repository.ProductRepository;
+import br.com.leandrosnazareth.pdvapi.domain.repository.SaleRepository;
 
 @ActiveProfiles(profiles = "integration-test")
 // @ActiveProfiles(profiles = "aplication")
-@SpringBootTest(classes = br.com.blsoft.pdvapi.PdvApiApplication.class)
+@SpringBootTest(classes = br.com.leandrosnazareth.pdvapi.PdvApiApplication.class)
 public class SaleIntegrationTest {
 
     @Autowired

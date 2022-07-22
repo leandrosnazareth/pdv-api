@@ -1,4 +1,4 @@
-package br.com.blsoft.pdvapi.service;
+package br.com.leandrosnazareth.pdvapi.service;
 
 import java.util.List;
 import java.util.Optional;
@@ -10,8 +10,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import br.com.blsoft.pdvapi.domain.entity.Product;
-import br.com.blsoft.pdvapi.domain.repository.ProductRepository;
+import br.com.leandrosnazareth.pdvapi.domain.entity.Product;
+import br.com.leandrosnazareth.pdvapi.domain.repository.ProductRepository;
 
 @Service
 public class ProductService {

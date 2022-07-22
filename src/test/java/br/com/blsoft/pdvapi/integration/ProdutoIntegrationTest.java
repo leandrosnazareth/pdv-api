@@ -12,11 +12,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 
-import br.com.blsoft.pdvapi.domain.entity.Product;
-import br.com.blsoft.pdvapi.domain.repository.ProductRepository;
+import br.com.leandrosnazareth.pdvapi.domain.entity.Product;
+import br.com.leandrosnazareth.pdvapi.domain.repository.ProductRepository;
 
 @ActiveProfiles(profiles = "integration-test")
-@SpringBootTest(classes = br.com.blsoft.pdvapi.PdvApiApplication.class)
+@SpringBootTest(classes = br.com.leandrosnazareth.pdvapi.PdvApiApplication.class)
 public class ProdutoIntegrationTest {
 
     @Autowired
