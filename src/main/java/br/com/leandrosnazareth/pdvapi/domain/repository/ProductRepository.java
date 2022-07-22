@@ -1,4 +1,4 @@
-package br.com.blsoft.pdvapi.domain.repository;
+package br.com.leandrosnazareth.pdvapi.domain.repository;
 
 import java.util.List;
 import java.util.Optional;
@@ -11,7 +11,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
-import br.com.blsoft.pdvapi.domain.entity.Product;
+import br.com.leandrosnazareth.pdvapi.domain.entity.Product;
 
 public interface ProductRepository extends JpaRepository<Product, Long> {
 

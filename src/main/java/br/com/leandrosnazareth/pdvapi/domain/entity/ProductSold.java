@@ -1,4 +1,4 @@
-package br.com.blsoft.pdvapi.domain.entity;
+package br.com.leandrosnazareth.pdvapi.domain.entity;
 
 import java.io.Serializable;
 import java.math.BigDecimal;

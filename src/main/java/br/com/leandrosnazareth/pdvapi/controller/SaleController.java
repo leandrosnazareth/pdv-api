@@ -1,4 +1,4 @@
-package br.com.blsoft.pdvapi.controller;
+package br.com.leandrosnazareth.pdvapi.controller;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -22,10 +22,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.blsoft.pdvapi.config.SpringFoxConfig;
-import br.com.blsoft.pdvapi.domain.entity.Sale;
-import br.com.blsoft.pdvapi.exception.ResourceNotFoundException;
-import br.com.blsoft.pdvapi.service.SaleService;
+import br.com.leandrosnazareth.pdvapi.config.SpringFoxConfig;
+import br.com.leandrosnazareth.pdvapi.domain.entity.Sale;
+import br.com.leandrosnazareth.pdvapi.exception.ResourceNotFoundException;
+import br.com.leandrosnazareth.pdvapi.service.SaleService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 

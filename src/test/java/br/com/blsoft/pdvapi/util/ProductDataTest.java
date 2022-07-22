@@ -2,8 +2,8 @@ package br.com.blsoft.pdvapi.util;
 
 import java.math.BigDecimal;
 
-import br.com.blsoft.pdvapi.domain.entity.Product;
-import br.com.blsoft.pdvapi.domain.entity.Product.ProductBuilder;
+import br.com.leandrosnazareth.pdvapi.domain.entity.Product;
+import br.com.leandrosnazareth.pdvapi.domain.entity.Product.ProductBuilder;
 
 public final class ProductDataTest {
 

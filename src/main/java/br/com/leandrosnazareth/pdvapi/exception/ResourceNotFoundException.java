@@ -1,4 +1,4 @@
-package br.com.blsoft.pdvapi.exception;
+package br.com.leandrosnazareth.pdvapi.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

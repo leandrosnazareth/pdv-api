@@ -1,4 +1,4 @@
-package br.com.blsoft.pdvapi.controller;
+package br.com.leandrosnazareth.pdvapi.controller;
 
 import java.util.HashMap;
 import java.util.List;
@@ -22,10 +22,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.blsoft.pdvapi.config.SpringFoxConfig;
-import br.com.blsoft.pdvapi.domain.entity.Product;
-import br.com.blsoft.pdvapi.exception.ResourceNotFoundException;
-import br.com.blsoft.pdvapi.service.ProductService;
+import br.com.leandrosnazareth.pdvapi.config.SpringFoxConfig;
+import br.com.leandrosnazareth.pdvapi.domain.entity.Product;
+import br.com.leandrosnazareth.pdvapi.exception.ResourceNotFoundException;
+import br.com.leandrosnazareth.pdvapi.service.ProductService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 

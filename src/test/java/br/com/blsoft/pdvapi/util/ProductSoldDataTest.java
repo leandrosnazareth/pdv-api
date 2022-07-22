@@ -3,8 +3,8 @@ package br.com.blsoft.pdvapi.util;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.blsoft.pdvapi.domain.entity.Product;
-import br.com.blsoft.pdvapi.domain.entity.ProductSold;
+import br.com.leandrosnazareth.pdvapi.domain.entity.Product;
+import br.com.leandrosnazareth.pdvapi.domain.entity.ProductSold;
 
 public class ProductSoldDataTest {
 
