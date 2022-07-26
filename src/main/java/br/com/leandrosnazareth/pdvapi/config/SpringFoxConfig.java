@@ -30,7 +30,7 @@ public class SpringFoxConfig {
     public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("br.com.blsoft.pdvapi"))
+                .apis(RequestHandlerSelectors.basePackage("br.com.leandrosnazareth.pdvapi"))
                 .paths(regex("/api/pdv.*"))
                 .build()
                 .tags(new Tag(PRODUCT_TAG, "Api REST PDV tag Product"))
@@ -45,7 +45,7 @@ public class SpringFoxConfig {
                 "API REST sistema de vendas em PDV.",
                 "1.0",
                 "Terms of Service",
-                new Contact("Leandro Nazareth", "www.linkedin.com/in/leandrosnazareth",
+                new Contact("Leandro Nazareth", "https://www.linkedin.com/in/leandrosnazareth",
                         "leandrosnazareth@gmail.com"),
                 "GNU GENERAL PUBLIC LICENSE",
                 "https://www.gnu.org/licenses/gpl-3.0.pt-br.html", Collections.emptyList());
