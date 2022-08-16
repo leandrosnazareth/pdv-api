@@ -26,6 +26,7 @@ import br.com.leandrosnazareth.pdvapi.config.SpringFoxConfig;
 import br.com.leandrosnazareth.pdvapi.domain.entity.Product;
 import br.com.leandrosnazareth.pdvapi.exception.ResourceNotFoundException;
 import br.com.leandrosnazareth.pdvapi.service.ProductService;
+import br.com.leandrosnazareth.pdvapi.util.MensageConstant;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
@@ -48,7 +49,7 @@ public class ProductController {
     public ResponseEntity<Product> findProductById(@PathVariable Long id)
             throws ResourceNotFoundException {
         Product product = productService.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Não foi encontrado um produto com id: " + id));
+                .orElseThrow(() -> new ResourceNotFoundException(MensageConstant.PRODUTO_NAO_ENCONTRADO + id));
         return ResponseEntity.ok().body(product);
     }
 
@@ -57,7 +58,7 @@ public class ProductController {
     public ResponseEntity<Product> findByIDAndActive(@PathVariable Integer id)
             throws ResourceNotFoundException {
         Product product = productService.findByIdAndActive(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Não foi encontrado um produto com id: " + id));
+                .orElseThrow(() -> new ResourceNotFoundException(MensageConstant.PRODUTO_NAO_ENCONTRADO + id));
         return ResponseEntity.ok().body(product);
     }
 
@@ -66,7 +67,7 @@ public class ProductController {
     public ResponseEntity<Product> findByName(@PathVariable String name)
             throws ResourceNotFoundException {
         Product product = productService.findByName(name)
-                .orElseThrow(() -> new ResourceNotFoundException("Não foi encontrado um produto com id: " + name));
+                .orElseThrow(() -> new ResourceNotFoundException(MensageConstant.PRODUTO_NAO_ENCONTRADO + name));
         return ResponseEntity.ok().body(product);
     }
 
@@ -75,7 +76,7 @@ public class ProductController {
     public ResponseEntity<Product> findByNameAndActive(@PathVariable String name)
             throws ResourceNotFoundException {
         Product product = productService.findByNameAndActive(name)
-                .orElseThrow(() -> new ResourceNotFoundException("Não foi encontrado um produto com id: " + name));
+                .orElseThrow(() -> new ResourceNotFoundException(MensageConstant.PRODUTO_NAO_ENCONTRADO + name));
         return ResponseEntity.ok().body(product);
     }
 
@@ -99,7 +100,7 @@ public class ProductController {
     public Map<String, Boolean> deleteById(@PathVariable Long id)
             throws ResourceNotFoundException {
         Product product = productService.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Não foi encontrado um produto com id: " + id));
+                .orElseThrow(() -> new ResourceNotFoundException(MensageConstant.PRODUTO_NAO_ENCONTRADO + id));
         productService.delete(product);
         Map<String, Boolean> response = new HashMap<>();
         response.put("deleted", Boolean.TRUE);
