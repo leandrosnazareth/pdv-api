@@ -1,7 +1,11 @@
 package br.com.blsoft.pdvapi.integration;
 
+import static br.com.blsoft.pdvapi.util.ConstantTest.DEFAULT_PRODUTO_ID;
 import static br.com.blsoft.pdvapi.util.ConstantTest.DEFAULT_PRODUTO_NOME;
 import static br.com.blsoft.pdvapi.util.ConstantTest.DEFAULT_PRODUTO_VALOR;
+import static br.com.blsoft.pdvapi.util.ConstantTest.DEFAULT_PRODUTO_ACTIVE;
+import static br.com.blsoft.pdvapi.util.ConstantTest.DEFAULT_DATE_CREATE;
+import static br.com.blsoft.pdvapi.util.ConstantTest.DEFAULT_DATE_UPDATE;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -144,15 +148,24 @@ public class ProdutoIntegrationTest {
     }
 
     public Product criarProdutoPadrao() {
-        return Product.builder()
-                .name(DEFAULT_PRODUTO_NOME)
-                .price(DEFAULT_PRODUTO_VALOR).build();
+        var product = new Product(
+                DEFAULT_PRODUTO_ID,
+                DEFAULT_PRODUTO_NOME,
+                DEFAULT_PRODUTO_VALOR,
+                DEFAULT_PRODUTO_ACTIVE,
+                DEFAULT_DATE_CREATE,
+                DEFAULT_DATE_UPDATE);
+        return product;
     }
 
     public Product criarProdutoNotActive() {
-        return Product.builder()
-                .name(DEFAULT_PRODUTO_NOME)
-                .price(DEFAULT_PRODUTO_VALOR)
-                .active(false).build();
+        var product = new Product(
+                DEFAULT_PRODUTO_ID,
+                DEFAULT_PRODUTO_NOME,
+                DEFAULT_PRODUTO_VALOR,
+                false,
+                DEFAULT_DATE_CREATE,
+                DEFAULT_DATE_UPDATE);
+        return product;
     }
 }

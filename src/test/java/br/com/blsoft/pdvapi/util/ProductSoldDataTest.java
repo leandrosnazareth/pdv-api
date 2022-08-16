@@ -12,11 +12,12 @@ public class ProductSoldDataTest {
         List<ProductSold> productSolds = new ArrayList<>();
         ProductSold productSold;
         for (Product product : products) {
-            productSold = ProductSold.builder()
-                    .price(product.getPrice())
-                    .priceTotal(product.getPrice())
-                    .quantity(5)
-                    .product(product).build();
+            productSold = new ProductSold(
+                    null,
+                    product,
+                    product.getPrice(),
+                    product.getPrice(),
+                    5);
             productSold.calcularPrecoTotal();
             productSolds.add(productSold);
         }
@@ -24,10 +25,12 @@ public class ProductSoldDataTest {
     }
 
     public ProductSold newProductSoldSemID(Product product) {
-        var productSold = ProductSold.builder()
-                .price(product.getPrice())
-                .quantity(5)
-                .product(product).build();
+        var productSold = new ProductSold(
+                null,
+                product,
+                product.getPrice(),
+                product.getPrice(),
+                5);
         productSold.calcularPrecoTotal();
         return productSold;
     }

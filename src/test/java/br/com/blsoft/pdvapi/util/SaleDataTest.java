@@ -10,13 +10,15 @@ import br.com.leandrosnazareth.pdvapi.domain.model.Payment;
 public class SaleDataTest {
 
     public Sale newSaleBuilderSemID(List<Product> products) {
-        var sale = Sale.builder()
-                .amount(new BigDecimal("0"))
-                .amountPaid(new BigDecimal("0"))
-                .payment(Payment.DINHEIRO)
-                .difference(new BigDecimal("0"))
-                .productSolds(new ProductSoldDataTest().newProductsSoldsSemID(products))
-                .build();
+        var sale = new Sale(
+                null,
+                new BigDecimal("0"),
+                new BigDecimal("0"),
+                new BigDecimal("0"),
+                Payment.DINHEIRO,
+                new ProductSoldDataTest().newProductsSoldsSemID(products),
+                null,
+                null);
         sale.calcularValorTotal();
         return sale;
     }

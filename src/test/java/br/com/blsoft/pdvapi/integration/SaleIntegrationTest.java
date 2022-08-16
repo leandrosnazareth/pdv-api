@@ -40,10 +40,10 @@ public class SaleIntegrationTest {
 
     @Test
     public void testCreateSale() throws JsonProcessingException {
-        var product = ProductDataTest.newProductBuilderSemId().build();
+        var product = ProductDataTest.newProductSemId();
         productRepository.save(product);
 
-        var valorPago = new BigDecimal("100.00");
+        var valorPago = new BigDecimal("66.65");
 
         var products = productRepository.findAll();
 
