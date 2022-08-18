@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.leandrosnazareth.pdvapi.config.SpringFoxConfig;
 import br.com.leandrosnazareth.pdvapi.domain.entity.Product;
+import br.com.leandrosnazareth.pdvapi.dto.ProductDto;
 import br.com.leandrosnazareth.pdvapi.exception.ResourceNotFoundException;
 import br.com.leandrosnazareth.pdvapi.service.ProductService;
 import br.com.leandrosnazareth.pdvapi.util.MensageConstant;
@@ -32,7 +33,7 @@ import io.swagger.annotations.ApiOperation;
 
 @RestController
 @RequestMapping("/api/pdv/product")
-@Api(tags = {SpringFoxConfig.PRODUCT_TAG})
+@Api(tags = { SpringFoxConfig.PRODUCT_TAG })
 public class ProductController {
 
     @Autowired
@@ -82,8 +83,8 @@ public class ProductController {
 
     @PostMapping
     @ApiOperation(value = "Salva um produto")
-    public Product createProduct(@Valid @RequestBody Product product) {
-        return productService.save(product);
+    public Product createProduct(@Valid @RequestBody ProductDto productDto) {
+        return productService.save(productDto);
     }
 
     @ApiOperation(value = "Listar todos produtos ativos com paginação")
@@ -110,11 +111,11 @@ public class ProductController {
     @PutMapping("{id}")
     @ApiOperation(value = "Atualizar produto")
     public ResponseEntity<Product> updateProduct(@PathVariable(value = "id") Long id,
-            @Valid @RequestBody Product product) throws ResourceNotFoundException {
-        productService.findById(product.getId())
+            @Valid @RequestBody ProductDto productDto) throws ResourceNotFoundException {
+        productService.findById(productDto.getId())
                 .orElseThrow(() -> new ResourceNotFoundException(
-                        "Não foi encontrado um produto com id: " + product.getId()));
-        return ResponseEntity.ok(productService.save(product));
+                        "Não foi encontrado um produto com id: " + productDto.getId()));
+        return ResponseEntity.ok(productService.save(productDto));
     }
 
     @PutMapping("desativar/{id}")
@@ -124,7 +125,6 @@ public class ProductController {
         productService.deactivate(id);
     }
 
-    
     @ApiOperation(value = "Retornar quantidade de Produtos")
     @GetMapping("count")
     public long countProducts() {

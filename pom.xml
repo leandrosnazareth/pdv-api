@@ -30,7 +30,6 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-
 		<!-- TESTS -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -89,6 +88,12 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-validation</artifactId>
+		</dependency>
+		<!-- mapear objetos para dto -->
+		<dependency>
+			<groupId>org.modelmapper</groupId>
+			<artifactId>modelmapper</artifactId>
+			<version>3.1.0</version>
 		</dependency>
 		<!-- spring security -->
 		<!-- <dependency>

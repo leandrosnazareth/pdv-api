@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import javax.validation.Valid;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import br.com.leandrosnazareth.pdvapi.domain.entity.Product;
 import br.com.leandrosnazareth.pdvapi.domain.repository.ProductRepository;
+import br.com.leandrosnazareth.pdvapi.dto.ProductDto;
 
 @Service
 public class ProductService {
@@ -19,7 +21,9 @@ public class ProductService {
     @Autowired
     private ProductRepository productRepository;
 
-    public Product save(Product product) {
+    public Product save(ProductDto productDto) {
+        ModelMapper modelMapper = new ModelMapper();
+        Product product = modelMapper.map(productDto, Product.class);
         return productRepository.save(product);
     }
 
