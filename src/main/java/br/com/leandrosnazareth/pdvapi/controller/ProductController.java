@@ -41,49 +41,49 @@ public class ProductController {
 
     @ApiOperation(value = "Listar todos produtos ativos")
     @GetMapping("all")
-    public List<Product> findAllActive() {
+    public List<ProductDto> findAllActive() {
         return productService.findAllActive();
     }
 
     @GetMapping("{id}")
     @ApiOperation(value = "Buscar produto pelo ID")
-    public ResponseEntity<Product> findProductById(@PathVariable Long id)
+    public ResponseEntity<ProductDto> findProductById(@PathVariable Long id)
             throws ResourceNotFoundException {
-        Product product = productService.findById(id)
+        ProductDto product = productService.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(MensageConstant.PRODUTO_NAO_ENCONTRADO + id));
         return ResponseEntity.ok().body(product);
     }
 
     @GetMapping("active/{id}")
     @ApiOperation(value = "Buscar produto ativo pelo ID")
-    public ResponseEntity<Product> findByIDAndActive(@PathVariable Integer id)
+    public ResponseEntity<ProductDto> findByIDAndActive(@PathVariable Integer id)
             throws ResourceNotFoundException {
-        Product product = productService.findByIdAndActive(id)
+        ProductDto productDto = productService.findByIdAndActive(id)
                 .orElseThrow(() -> new ResourceNotFoundException(MensageConstant.PRODUTO_NAO_ENCONTRADO + id));
-        return ResponseEntity.ok().body(product);
+        return ResponseEntity.ok().body(productDto);
     }
 
     @GetMapping("name/{name}")
     @ApiOperation(value = "Buscar qualquer produto pelo nome")
-    public ResponseEntity<Product> findByName(@PathVariable String name)
+    public ResponseEntity<ProductDto> findByName(@PathVariable String name)
             throws ResourceNotFoundException {
-        Product product = productService.findByName(name)
+        ProductDto productDto = productService.findByName(name)
                 .orElseThrow(() -> new ResourceNotFoundException(MensageConstant.PRODUTO_NAO_ENCONTRADO + name));
-        return ResponseEntity.ok().body(product);
+        return ResponseEntity.ok().body(productDto);
     }
 
     @GetMapping("name/active/{name}")
     @ApiOperation(value = "Buscar produto ativos pelo nome")
-    public ResponseEntity<Product> findByNameAndActive(@PathVariable String name)
+    public ResponseEntity<ProductDto> findByNameAndActive(@PathVariable String name)
             throws ResourceNotFoundException {
-        Product product = productService.findByNameAndActive(name)
+        ProductDto productDto = productService.findByNameAndActive(name)
                 .orElseThrow(() -> new ResourceNotFoundException(MensageConstant.PRODUTO_NAO_ENCONTRADO + name));
-        return ResponseEntity.ok().body(product);
+        return ResponseEntity.ok().body(productDto);
     }
 
     @PostMapping
     @ApiOperation(value = "Salva um produto")
-    public Product createProduct(@Valid @RequestBody ProductDto productDto) {
+    public ProductDto createProduct(@Valid @RequestBody ProductDto productDto) {
         return productService.save(productDto);
     }
 
@@ -98,11 +98,10 @@ public class ProductController {
 
     @ApiOperation(value = "Deletar produto pelo ID")
     @DeleteMapping("{id}")
-    public Map<String, Boolean> deleteById(@PathVariable Long id)
-            throws ResourceNotFoundException {
-        Product product = productService.findById(id)
+    public Map<String, Boolean> deleteById(@PathVariable Long id) {
+        ProductDto productDto = productService.findByIdAndActive(id)
                 .orElseThrow(() -> new ResourceNotFoundException(MensageConstant.PRODUTO_NAO_ENCONTRADO + id));
-        productService.delete(product);
+        productService.delete(productDto);
         Map<String, Boolean> response = new HashMap<>();
         response.put("deleted", Boolean.TRUE);
         return response;
@@ -110,11 +109,11 @@ public class ProductController {
 
     @PutMapping("{id}")
     @ApiOperation(value = "Atualizar produto")
-    public ResponseEntity<Product> updateProduct(@PathVariable(value = "id") Long id,
+    public ResponseEntity<ProductDto> updateProduct(@PathVariable(value = "id") Long id,
             @Valid @RequestBody ProductDto productDto) throws ResourceNotFoundException {
         productService.findById(productDto.getId())
                 .orElseThrow(() -> new ResourceNotFoundException(
-                        "Não foi encontrado um produto com id: " + productDto.getId()));
+                        MensageConstant.PRODUTO_NAO_ENCONTRADO + productDto.getId()));
         return ResponseEntity.ok(productService.save(productDto));
     }
 

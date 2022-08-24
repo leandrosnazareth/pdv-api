@@ -2,6 +2,7 @@ package br.com.leandrosnazareth.pdvapi.service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 
@@ -19,40 +20,49 @@ import br.com.leandrosnazareth.pdvapi.dto.ProductDto;
 public class ProductService {
 
     @Autowired
-    private ProductRepository productRepository;
+    private ModelMapper modelMapper;
 
-    public Product save(ProductDto productDto) {
-        ModelMapper modelMapper = new ModelMapper();
-        Product product = modelMapper.map(productDto, Product.class);
-        return productRepository.save(product);
-    }
+    @Autowired
+    private ProductRepository productRepository;
 
     public Page<Product> findAll(Pageable pageable) {
         return productRepository.findAll(pageable);
     }
-    
-    public Optional<Product> findById(long id) {
-        return productRepository.findById(id);
+
+    public ProductDto save(ProductDto productDto) {
+        Product product = productRepository.save(modelMapper.map(productDto, Product.class));
+        return modelMapper.map(product, ProductDto.class);
     }
 
-    public Optional<Product> findByName(String name) {
-        return productRepository.findByName(name);
+    public Optional<ProductDto> findById(long id) {
+        return productRepository.findById(id)
+                .map(product -> modelMapper.map(product, ProductDto.class));
     }
-    
-    public void delete(Product product) {
+
+    public Optional<ProductDto> findByName(String name) {
+        return productRepository.findByName(name)
+                .map(product -> modelMapper.map(product, ProductDto.class));
+    }
+
+    public Optional<ProductDto> findByIdAndActive(long id) {
+        return productRepository.findByIdAndActive(id, true)
+                .map(product -> modelMapper.map(product, ProductDto.class));
+    }
+
+    public void delete(ProductDto productDto) {
+        Product product = modelMapper.map(productDto, Product.class);
         productRepository.delete(product);
     }
-    
-    public List<Product> findAllActive() {
-        return productRepository.findByActive(true);
+
+    public List<ProductDto> findAllActive() {
+        return productRepository.findByActive(true).stream()
+                .map(product -> modelMapper.map(product, ProductDto.class))
+                .collect(Collectors.toList());
     }
 
-    public Optional<Product> findByIdAndActive(long id) {
-        return productRepository.findByIdAndActive(id, true);
-    }
-
-    public Optional<Product> findByNameAndActive(String name) {
-        return productRepository.findByNameAndActive(name, true);
+    public Optional<ProductDto> findByNameAndActive(String name) {
+        return productRepository.findByNameAndActive(name, true)
+                .map(product -> modelMapper.map(product, ProductDto.class));
     }
 
     public void deactivate(@Valid Long id) {

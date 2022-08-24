@@ -1,6 +1,5 @@
 package br.com.leandrosnazareth.pdvapi.domain.repository;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.domain.Page;
@@ -15,7 +14,7 @@ import br.com.leandrosnazareth.pdvapi.domain.entity.Product;
 
 public interface ProductRepository extends JpaRepository<Product, Long> {
 
-    List<Product> findByActive(boolean active);
+    Optional<Product> findByActive(boolean active);
 
     Optional<Product> findByIdAndActive(Long id, Boolean active);
 
@@ -33,7 +32,6 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     Page<Product> findAllByActive(Pageable pageable, boolean active);
 
     long count();
-
 
     @Query("SELECT COUNT(*) FROM Product WHERE active = true")
     long countProductActive();
