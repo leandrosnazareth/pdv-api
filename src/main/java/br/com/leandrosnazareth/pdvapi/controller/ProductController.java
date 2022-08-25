@@ -23,7 +23,6 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.leandrosnazareth.pdvapi.config.SpringFoxConfig;
-import br.com.leandrosnazareth.pdvapi.domain.entity.Product;
 import br.com.leandrosnazareth.pdvapi.dto.ProductDto;
 import br.com.leandrosnazareth.pdvapi.exception.ResourceNotFoundException;
 import br.com.leandrosnazareth.pdvapi.service.ProductService;
@@ -39,6 +38,15 @@ public class ProductController {
     @Autowired
     private ProductService productService;
 
+    @ApiOperation(value = "Listar todos produtos com paginação")
+    @GetMapping
+    public Page<ProductDto> findAllPagination(
+            @RequestParam(value = "page", defaultValue = "0") Integer pagina,
+            @RequestParam(value = "size", defaultValue = "5") Integer tamanhoPagina) {
+        PageRequest pageRequest = PageRequest.of(pagina, tamanhoPagina);
+        return productService.findAllDto(pageRequest);
+    }
+
     @ApiOperation(value = "Listar todos produtos ativos")
     @GetMapping("all")
     public List<ProductDto> findAllActive() {
@@ -49,6 +57,8 @@ public class ProductController {
     @ApiOperation(value = "Buscar produto pelo ID")
     public ResponseEntity<ProductDto> findProductById(@PathVariable Long id)
             throws ResourceNotFoundException {
+        // retornar um Optional<prductDto> e converte para productDto, em caso nulo
+        // retorna a exception
         ProductDto product = productService.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(MensageConstant.PRODUTO_NAO_ENCONTRADO + id));
         return ResponseEntity.ok().body(product);
@@ -58,6 +68,8 @@ public class ProductController {
     @ApiOperation(value = "Buscar produto ativo pelo ID")
     public ResponseEntity<ProductDto> findByIDAndActive(@PathVariable Integer id)
             throws ResourceNotFoundException {
+        // retornar um Optional<prductDto> e converte para productDto, em caso nulo
+        // retorna a exception
         ProductDto productDto = productService.findByIdAndActive(id)
                 .orElseThrow(() -> new ResourceNotFoundException(MensageConstant.PRODUTO_NAO_ENCONTRADO + id));
         return ResponseEntity.ok().body(productDto);
@@ -67,6 +79,8 @@ public class ProductController {
     @ApiOperation(value = "Buscar qualquer produto pelo nome")
     public ResponseEntity<ProductDto> findByName(@PathVariable String name)
             throws ResourceNotFoundException {
+        // retornar um Optional<prductDto> e converte para productDto, em caso nulo
+        // retorna a exception
         ProductDto productDto = productService.findByName(name)
                 .orElseThrow(() -> new ResourceNotFoundException(MensageConstant.PRODUTO_NAO_ENCONTRADO + name));
         return ResponseEntity.ok().body(productDto);
@@ -76,6 +90,8 @@ public class ProductController {
     @ApiOperation(value = "Buscar produto ativos pelo nome")
     public ResponseEntity<ProductDto> findByNameAndActive(@PathVariable String name)
             throws ResourceNotFoundException {
+        // retornar um Optional<prductDto> e converte para productDto, em caso nulo
+        // retorna a exception
         ProductDto productDto = productService.findByNameAndActive(name)
                 .orElseThrow(() -> new ResourceNotFoundException(MensageConstant.PRODUTO_NAO_ENCONTRADO + name));
         return ResponseEntity.ok().body(productDto);
@@ -85,15 +101,6 @@ public class ProductController {
     @ApiOperation(value = "Salva um produto")
     public ProductDto createProduct(@Valid @RequestBody ProductDto productDto) {
         return productService.save(productDto);
-    }
-
-    @ApiOperation(value = "Listar todos produtos ativos com paginação")
-    @GetMapping
-    public Page<Product> findAllPagination(
-            @RequestParam(value = "page", defaultValue = "0") Integer pagina,
-            @RequestParam(value = "size", defaultValue = "5") Integer tamanhoPagina) {
-        PageRequest pageRequest = PageRequest.of(pagina, tamanhoPagina);
-        return productService.findAll(pageRequest);
     }
 
     @ApiOperation(value = "Deletar produto pelo ID")

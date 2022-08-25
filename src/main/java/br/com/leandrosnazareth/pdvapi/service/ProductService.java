@@ -12,6 +12,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import com.github.dozermapper.core.DozerBeanMapperBuilder;
+
 import br.com.leandrosnazareth.pdvapi.domain.entity.Product;
 import br.com.leandrosnazareth.pdvapi.domain.repository.ProductRepository;
 import br.com.leandrosnazareth.pdvapi.dto.ProductDto;
@@ -27,6 +29,19 @@ public class ProductService {
 
     public Page<Product> findAll(Pageable pageable) {
         return productRepository.findAll(pageable);
+    }
+
+    public Page<ProductDto> findAllDto(Pageable pageable) {
+        return productRepository.findAll(pageable)
+                .map((product -> DozerBeanMapperBuilder.buildDefault()// converte pag<Product> para pga<pageproductdto>
+                        .map(product, ProductDto.class)));
+    }
+
+    public List<ProductDto> findAllActive() {
+        // busca lista de produtos e mapeia para lista de produtosdto
+        return productRepository.findByActive(true).stream()
+                .map(product -> modelMapper.map(product, ProductDto.class))
+                .collect(Collectors.toList());
     }
 
     public ProductDto save(ProductDto productDto) {
@@ -52,12 +67,6 @@ public class ProductService {
     public void delete(ProductDto productDto) {
         Product product = modelMapper.map(productDto, Product.class);
         productRepository.delete(product);
-    }
-
-    public List<ProductDto> findAllActive() {
-        return productRepository.findByActive(true).stream()
-                .map(product -> modelMapper.map(product, ProductDto.class))
-                .collect(Collectors.toList());
     }
 
     public Optional<ProductDto> findByNameAndActive(String name) {
