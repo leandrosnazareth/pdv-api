@@ -58,7 +58,6 @@ public class ProductController {
     public ResponseEntity<ProductDto> findProductById(@PathVariable Long id)
             throws ResourceNotFoundException {
         // retornar um Optional<prductDto> e converte para productDto, em caso nulo
-        // retorna a exception
         ProductDto product = productService.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(MensageConstant.PRODUTO_NAO_ENCONTRADO + id));
         return ResponseEntity.ok().body(product);

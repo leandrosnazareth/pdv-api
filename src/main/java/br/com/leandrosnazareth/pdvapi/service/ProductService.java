@@ -27,10 +27,6 @@ public class ProductService {
     @Autowired
     private ProductRepository productRepository;
 
-    public Page<Product> findAll(Pageable pageable) {
-        return productRepository.findAll(pageable);
-    }
-
     public Page<ProductDto> findAllDto(Pageable pageable) {
         return productRepository.findAll(pageable)
                 .map((product -> DozerBeanMapperBuilder.buildDefault()// converte pag<Product> para pga<pageproductdto>

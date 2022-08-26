@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.leandrosnazareth.pdvapi.config.SpringFoxConfig;
-import br.com.leandrosnazareth.pdvapi.domain.entity.Sale;
+import br.com.leandrosnazareth.pdvapi.dto.SaleDto;
 import br.com.leandrosnazareth.pdvapi.exception.ResourceNotFoundException;
 import br.com.leandrosnazareth.pdvapi.service.SaleService;
 import io.swagger.annotations.Api;
@@ -39,22 +39,23 @@ public class SaleController {
 
     @GetMapping("{id}")
     @ApiOperation(value = "Buscar venda pelo ID")
-    public ResponseEntity<Sale> findSaleById(@PathVariable Long id)
+    public ResponseEntity<SaleDto> findSaleById(@PathVariable Long id)
             throws ResourceNotFoundException {
-        Sale sale = saleService.findById(id)
+        // retornar um Optional<saleDto> e converte para saleDto, em caso nulo
+        SaleDto saleDto = saleService.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Não foi encontrado uma venda com id: " + id));
-        return ResponseEntity.ok().body(sale);
+        return ResponseEntity.ok().body(saleDto);
     }
 
     @PostMapping
     @ApiOperation(value = "Salva uma venda")
-    public Sale createSale(@Valid @RequestBody Sale sale) {
-        return saleService.save(sale);
+    public SaleDto createSale(@Valid @RequestBody SaleDto saleDto) {
+        return saleService.save(saleDto);
     }
 
     @ApiOperation(value = "Listar todas vendas ativas com paginação")
     @GetMapping
-    public Page<Sale> findAllPagination(
+    public Page<SaleDto> findAllPagination(
             @RequestParam(value = "page", defaultValue = "0") Integer pagina,
             @RequestParam(value = "size", defaultValue = "5") Integer tamanhoPagina) {
         PageRequest pageRequest = PageRequest.of(pagina, tamanhoPagina);
@@ -65,9 +66,9 @@ public class SaleController {
     @DeleteMapping("{id}")
     public Map<String, Boolean> deleteById(@PathVariable Long id)
             throws ResourceNotFoundException {
-        Sale sale = saleService.findById(id)
+        SaleDto saleDto = saleService.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Não foi encontrada uma venda com id: " + id));
-        saleService.delete(sale);
+        saleService.delete(saleDto);
         Map<String, Boolean> response = new HashMap<>();
         response.put("deleted", Boolean.TRUE);
         return response;
@@ -75,12 +76,12 @@ public class SaleController {
 
     @PutMapping("{id}")
     @ApiOperation(value = "Atualizar venda")
-    public ResponseEntity<Sale> updateSale(@PathVariable(value = "id") Long id,
-            @Valid @RequestBody Sale sale) throws ResourceNotFoundException {
-        saleService.findById(sale.getId())
+    public ResponseEntity<SaleDto> updateSale(@PathVariable(value = "id") Long id,
+            @Valid @RequestBody SaleDto saleDto) throws ResourceNotFoundException {
+        saleService.findById(saleDto.getId())
                 .orElseThrow(() -> new ResourceNotFoundException(
-                        "Não foi encontrada uma venda com id: " + sale.getId()));
-        return ResponseEntity.ok(saleService.save(sale));
+                        "Não foi encontrada uma venda com id: " + saleDto.getId()));
+        return ResponseEntity.ok(saleService.save(saleDto));
     }
 
     @GetMapping("total/{createdAt}")
@@ -103,7 +104,7 @@ public class SaleController {
 
     @ApiOperation(value = "Retornar ultimas 10 vendas")
     @GetMapping("limit")
-    public List<Sale> findTopByOrderByIdDesc() {
+    public List<SaleDto> findTopByOrderByIdDesc() {
         return saleService.findTopByOrderByIdDesc();
     }
 }
