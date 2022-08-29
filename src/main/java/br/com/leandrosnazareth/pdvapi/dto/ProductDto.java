@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 import lombok.Data;
 
 @Data
-public class ProductDto {
+public class ProductDTO {
 
     private Long id;
     private String name;

@@ -9,7 +9,7 @@ import br.com.leandrosnazareth.pdvapi.domain.model.Payment;
 import lombok.Data;
 
 @Data
-public class SaleDto {
+public class SaleDTO {
 
     private Long id;
     private BigDecimal amount;
