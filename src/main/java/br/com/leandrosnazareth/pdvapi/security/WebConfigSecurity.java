@@ -33,7 +33,7 @@ public class WebConfigSecurity extends WebSecurityConfigurerAdapter {
 				.disable().authorizeRequests()
 				.antMatchers("/api/login/").permitAll()
 				.antMatchers("/index").permitAll()
-				.antMatchers(AUTH_WHITELIST).permitAll()
+				.antMatchers(AUTH_WHITELIST).permitAll()//liberar acesso ao endereço da doc swagger
 
 				// Logout - Redireciona após o user deslogar do sistema
 				.anyRequest().authenticated().and().logout().logoutSuccessUrl("/index")
