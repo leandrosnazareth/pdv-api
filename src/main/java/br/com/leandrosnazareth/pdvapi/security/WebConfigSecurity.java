@@ -30,10 +30,12 @@ public class WebConfigSecurity extends WebSecurityConfigurerAdapter {
 				.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
 
 				// Permitir todos acessarem a pagina pincipal index ou /
-				.disable().authorizeRequests().antMatchers("/api/login/").permitAll()
+				.disable().authorizeRequests()
+				.antMatchers("/api/login/").permitAll()
 				.antMatchers("/index").permitAll()
+				.antMatchers(AUTH_WHITELIST).permitAll()
 
-				//Logout - Redireciona após o user deslogar do sistema
+				// Logout - Redireciona após o user deslogar do sistema
 				.anyRequest().authenticated().and().logout().logoutSuccessUrl("/index")
 
 				// Maperia URL de Logout e insvalida o usuário
@@ -55,4 +57,13 @@ public class WebConfigSecurity extends WebSecurityConfigurerAdapter {
 				// Padrão de codigição de senha
 				.passwordEncoder(new BCryptPasswordEncoder());
 	}
+
+	private static final String[] AUTH_WHITELIST = {
+            // -- swagger ui
+            "/v2/api-docs",
+            "/v3/api-docs",  
+            "/swagger-resources/**", 
+            "/swagger-ui/**",
+             };
+
 }

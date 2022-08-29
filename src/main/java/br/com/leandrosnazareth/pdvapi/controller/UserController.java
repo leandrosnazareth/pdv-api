@@ -18,20 +18,25 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.leandrosnazareth.pdvapi.config.SpringFoxConfig;
 import br.com.leandrosnazareth.pdvapi.domain.entity.Usuario;
 import br.com.leandrosnazareth.pdvapi.dto.UserDTO;
 import br.com.leandrosnazareth.pdvapi.dto.UserFullDTO;
 import br.com.leandrosnazareth.pdvapi.exception.ResourceNotFoundException;
 import br.com.leandrosnazareth.pdvapi.service.UserService;
 import br.com.leandrosnazareth.pdvapi.util.MensageConstant;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 
 @RestController
 @RequestMapping("/api/pdv/user")
+@Api(tags = { SpringFoxConfig.USER_TAG })
 public class UserController {
 
     @Autowired
     private UserService usuarioService;
 
+    @ApiOperation(value = "Buscar usuario pelo ID")
     @GetMapping("{id}")
     @CacheEvict(value = "cacheuserid", allEntries = true) // limpar o cache que não é utilizado a um tempo
     @CachePut("cacheuserid") // identificar as atualizações no bd e add ao cache
@@ -42,6 +47,7 @@ public class UserController {
         return ResponseEntity.ok().body(usuarioDTO);
     }
 
+    @ApiOperation(value = "Deletar usuario pelo ID")
     @DeleteMapping("{id}")
     public Map<String, Boolean> deleteById(@PathVariable Long id) {
         Usuario usuario = usuarioService.findById(id)
@@ -52,11 +58,13 @@ public class UserController {
         return response;
     }
 
+    @ApiOperation(value = "Listar todos usuarios")
     @GetMapping("/")
     public List<UserDTO> findAllUsuario() {
         return usuarioService.findAll();
     }
 
+    @ApiOperation(value = "Criar/cadastrar novo usuario")
     @PostMapping("/")
     public UserDTO createUsuraio(@RequestBody UserFullDTO usuarioFullDTO) {
         String senhacriptografada = new BCryptPasswordEncoder().encode(usuarioFullDTO.getPassword());
@@ -64,6 +72,7 @@ public class UserController {
         return usuarioService.save(usuarioFullDTO);
     }
 
+    @ApiOperation(value = "Atualizar usuario")
     @PutMapping("/")
     public UserDTO atualizar(@RequestBody UserFullDTO usuarioFullDTO) {
         Usuario usuarioTemporadrio = usuarioService.findById(usuarioFullDTO.getId()).orElseThrow(
