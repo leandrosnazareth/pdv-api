@@ -48,8 +48,8 @@ public class JWTTokenAutenticacaoService {
 
 		// Adiciona no cabeçalho http
 		response.addHeader(HEADER_STRING, token); // Authorization: Bearer + o token gerado
-		
-		//atualizar token no banco de dados
+
+		// atualizar token no banco de dados
 		ApplicationContextLoad.getApplicationContext()
 				.getBean(UsuerRepository.class).atualizaTokenUser(JWT, username);
 
@@ -95,6 +95,8 @@ public class JWTTokenAutenticacaoService {
 				e1.printStackTrace();
 			}
 		}
+
 		return null; // Não autorizado
 	}
+
 }
