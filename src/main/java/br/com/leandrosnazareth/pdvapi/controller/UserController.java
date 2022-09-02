@@ -59,13 +59,19 @@ public class UserController {
     }
 
     @ApiOperation(value = "Listar todos usuarios")
-    @GetMapping("/")
+    @GetMapping
     public List<UserDTO> findAllUsuario() {
         return usuarioService.findAll();
     }
 
+    @ApiOperation(value = "Listar todos usuarios")
+    @GetMapping("/testeuser/{id}")
+    public Usuario findcomplete(@PathVariable Long id) {
+        return usuarioService.findById(id).get();
+    }
+
     @ApiOperation(value = "Criar/cadastrar novo usuario")
-    @PostMapping("/")
+    @PostMapping
     public UserDTO createUsuraio(@RequestBody UserFullDTO usuarioFullDTO) {
         String senhacriptografada = new BCryptPasswordEncoder().encode(usuarioFullDTO.getPassword());
         usuarioFullDTO.setPassword(senhacriptografada);
@@ -73,7 +79,7 @@ public class UserController {
     }
 
     @ApiOperation(value = "Atualizar usuario")
-    @PutMapping("/")
+    @PutMapping
     public UserDTO atualizar(@RequestBody UserFullDTO usuarioFullDTO) {
         Usuario usuarioTemporadrio = usuarioService.findById(usuarioFullDTO.getId()).orElseThrow(
                 () -> new ResourceNotFoundException(MensageConstant.PRODUTO_NAO_ENCONTRADO + usuarioFullDTO.getId()));

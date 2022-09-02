@@ -63,7 +63,6 @@ public class JWTTokenAutenticacaoService {
 		// Pega o token enviado no cabeçalho http
 		String token = request.getHeader(HEADER_STRING);
 		try {
-
 			if (token != null) {
 				// pegar o token e retirar os espaços e o bearer
 				String tokenLimpo = token.replace(TOKEN_PREFIX, "").trim();
