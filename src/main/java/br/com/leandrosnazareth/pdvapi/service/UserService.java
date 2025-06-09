@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.leandrosnazareth.pdvapi.domain.entity.Usuario;
-import br.com.leandrosnazareth.pdvapi.domain.repository.UsuerRepository;
+import br.com.leandrosnazareth.pdvapi.domain.repository.UserRepository;
 import br.com.leandrosnazareth.pdvapi.dto.UserDTO;
 import br.com.leandrosnazareth.pdvapi.dto.UserFullDTO;
 
@@ -20,7 +20,7 @@ public class UserService {
     private ModelMapper modelMapper;
 
     @Autowired
-    private UsuerRepository usuarioRepository;
+    private UserRepository usuarioRepository;
 
     public Optional<UserDTO> findByIdDTO(long id) {
         return usuarioRepository.findById(id)

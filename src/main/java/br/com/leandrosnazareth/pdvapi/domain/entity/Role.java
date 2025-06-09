@@ -10,7 +10,6 @@ import javax.validation.constraints.Size;
 
 import org.springframework.security.core.GrantedAuthority;
 
-import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -21,15 +20,15 @@ import lombok.ToString;
 @Entity
 @Getter
 @Setter
-@NoArgsConstructor(access = AccessLevel.PRIVATE)
-@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@NoArgsConstructor
+@AllArgsConstructor
 @ToString
 @EqualsAndHashCode
 public class Role implements GrantedAuthority {
 
     private static final long serialVersionUID = 1L;
     @Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Size(min = 3, max = 20, message = "Campo nome deve ter entre 3 e 20 caracteres")
     @NotNull(message = "Campo nome é obrigatório")
@@ -40,5 +39,9 @@ public class Role implements GrantedAuthority {
     @Override
     public String getAuthority() {
         return this.nameRole;
+    }
+
+    public Role(String string) {
+        this.nameRole = string;
     }
 }

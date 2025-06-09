@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import br.com.leandrosnazareth.pdvapi.domain.entity.Usuario;
-import br.com.leandrosnazareth.pdvapi.domain.repository.UsuerRepository;
+import br.com.leandrosnazareth.pdvapi.domain.repository.UserRepository;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -51,7 +51,7 @@ public class JWTTokenAutenticacaoService {
 
 		// atualizar token no banco de dados
 		ApplicationContextLoad.getApplicationContext()
-				.getBean(UsuerRepository.class).atualizaTokenUser(JWT, username);
+				.getBean(UserRepository.class).atualizaTokenUser(JWT, username);
 
 		// Escreve o token como responsta no corpo http
 		response.getWriter().write("{\"Authorization\": \"" + token + "\"}");
@@ -73,7 +73,7 @@ public class JWTTokenAutenticacaoService {
 				if (user != null) {
 					// retornar o usuário logado
 					Usuario usuario = ApplicationContextLoad.getApplicationContext()
-							.getBean(UsuerRepository.class).findUserByUsername(user);
+							.getBean(UserRepository.class).findUserByUsername(user);
 					if (usuario != null) {
 						// comparar token do banco com o fornecido pelo usuário
 						if (tokenLimpo.equalsIgnoreCase(usuario.getToken())) {

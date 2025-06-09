@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import br.com.leandrosnazareth.pdvapi.domain.entity.Usuario;
 
 @Repository
-public interface UsuerRepository  extends JpaRepository<Usuario, Long> {	
+public interface UserRepository  extends JpaRepository<Usuario, Long> {	
 	//1 referencia primeiro paramentro
 	@Query("select u from Usuario u where u.username = ?1")
 	Usuario findUserByUsername(String username);

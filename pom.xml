@@ -13,7 +13,7 @@
 	<name>pdv-api</name>
 	<description>Sistema de venda PDV web para testes</description>
 	<properties>
-		<java.version>11</java.version>
+		<java.version>17</java.version>
 		<junit-jupter.version>1.17.2</junit-jupter.version>
 		<springfox_swagger.version>3.0.0</springfox_swagger.version>
 		<springfox-boot.version>3.0.0</springfox-boot.version>

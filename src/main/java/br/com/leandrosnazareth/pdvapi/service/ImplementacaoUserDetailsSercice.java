@@ -8,13 +8,13 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import br.com.leandrosnazareth.pdvapi.domain.entity.Usuario;
-import br.com.leandrosnazareth.pdvapi.domain.repository.UsuerRepository;
+import br.com.leandrosnazareth.pdvapi.domain.repository.UserRepository;
 
 @Service
 public class ImplementacaoUserDetailsSercice implements UserDetailsService {
 
     @Autowired
-    private UsuerRepository usuarioRepository;
+    private UserRepository usuarioRepository;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
