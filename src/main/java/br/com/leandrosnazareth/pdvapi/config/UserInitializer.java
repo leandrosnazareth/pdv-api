@@ -21,28 +21,33 @@ public class UserInitializer {
             RoleRepository roleRepository,
             PasswordEncoder encoder) {
         return args -> {
-            if (usuarioRepository.count() == 0) {
-
-                // Verifica ou cria a Role ADMIN
-                Role adminRole = roleRepository.findByNameRole("ROLE_ADMIN");
-                if (adminRole == null) {
-                    adminRole = new Role("ROLE_ADMIN");
-                    adminRole = roleRepository.save(adminRole);
-                    System.out.println("Role ROLE_ADMIN criada.");
-                }
-
-                // Cria o usuário admin
-                Usuario admin = new Usuario();
-                admin.setUsername("admin");
-                admin.setPassword(new BCryptPasswordEncoder().encode("123"));
-                admin.setName("Administrador");
-                admin.setRoles(Collections.singletonList(adminRole));
-
-                usuarioRepository.save(admin);
-                System.out.println("Usuário admin criado com sucesso.");
-            } else {
+            if (usuarioRepository.count() > 0) {
                 System.out.println("Usuários já existem. Nenhum admin criado.");
+
+                return;
             }
+
+            // Verifica ou cria a Role ADMIN
+            Role adminRole = roleRepository.findByNameRole("ROLE_ADMIN");
+
+            if (adminRole == null) {
+                adminRole = new Role("ROLE_ADMIN");
+                adminRole = roleRepository.save(adminRole);
+                
+                System.out.println("Role ROLE_ADMIN criada.");
+            }
+
+            // Cria o usuário admin
+            Usuario admin = new Usuario();
+
+            admin.setUsername("admin");
+            admin.setPassword(new BCryptPasswordEncoder().encode("123"));
+            admin.setName("Administrador");
+            admin.setRoles(Collections.singletonList(adminRole));
+
+            usuarioRepository.save(admin);
+
+            System.out.println("Usuário admin criado com sucesso.");
         };
     }
 }
