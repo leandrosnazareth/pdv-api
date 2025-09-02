@@ -134,6 +134,14 @@ Contribuições são o que tornam a comunidade de código aberto um lugar incrí
 
 Sinta-se à vontade para abrir uma issue na [página de issues da API](https://github.com/leandrosnazareth/pdv-api/issues) ou do [App](https://github.com/leandrosnazareth/pdv-app/issues).
 
+### Usuário e senha padrão
+
+Ao iniciar a aplicação pela primeira vez, um usuário padrão é criado automaticamente.  
+Essa configuração pode ser verificada na classe `UserInitializer`.
+
+- **Usuário:** `admin`  
+- **Senha:** `123`
+
 ## ⭐️ Mostre seu Apoio
 
 Se este projeto te ajudou de alguma forma, dê uma ⭐️ nos repositórios!
