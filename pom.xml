@@ -14,10 +14,9 @@
 	<description>Sistema de venda PDV web para testes</description>
 	<properties>
 		<java.version>17</java.version>
-		<junit-jupter.version>1.17.2</junit-jupter.version>
 		<springfox_swagger.version>3.0.0</springfox_swagger.version>
 		<springfox-boot.version>3.0.0</springfox-boot.version>
-		<testcontainers.version>1.17.2</testcontainers.version>
+		<testcontainers.version>1.21.4</testcontainers.version>
 	</properties>
 	<dependencies>
 		<!-- Persiste dados em armazenamentos SQL com Java Persistence API usando Spring Data e Hibernate.  -->
@@ -39,7 +38,6 @@
 		<dependency>
 			<groupId>org.testcontainers</groupId>
 			<artifactId>junit-jupiter</artifactId>
-			<version>${junit-jupter.version}</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
@@ -130,7 +128,6 @@ add anotação @Cacheable("cachenome") no método que deseja utilizar o cache --
 		</dependency>
 	</dependencies>
 
-	<!-- Test Containers   -->
 	<dependencyManagement>
 		<dependencies>
 			<dependency>

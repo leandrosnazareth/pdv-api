@@ -25,7 +25,7 @@ import br.com.leandrosnazareth.pdvapi.domain.repository.SaleRepository;
 @ActiveProfiles(profiles = "integration-test")
 // @ActiveProfiles(profiles = "aplication")
 @SpringBootTest(classes = br.com.leandrosnazareth.pdvapi.PdvApiApplication.class)
-public class SaleIntegrationTest {
+public class SaleIntegrationTest extends AbstractIntegrationTest {
 
     @Autowired
     SaleRepository saleRepository;
